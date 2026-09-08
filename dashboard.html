@@ -3,292 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | Nexus Academy</title>
+    <title>Admin Dashboard | Pesantren Al-Izzah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: { 900: '#064E3B', 800: '#065F46' },
+                        gold: { 400: '#D97706' },
+                        slate: { 900: '#0f172a', 800: '#1e293b' }
+                    },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-slate-950 text-slate-200 h-screen flex overflow-hidden">
+<body class="bg-slate-900 text-gray-100 font-sans">
 
-    <!-- Sidebar -->
-    <aside class="w-64 bg-slate-900 border-r border-white/5 hidden md:flex flex-col">
-        <div class="h-20 flex items-center px-8 border-b border-white/5">
-            <span class="font-bold text-xl text-white">Nexus<span class="text-blue-400">Admin</span></span>
-        </div>
-        <nav class="flex-1 px-4 py-6 space-y-2">
-            <a href="#" class="flex items-center gap-3 px-4 py-3 bg-blue-600/10 text-blue-400 rounded-lg border border-blue-600/20">
-                <i class="fas fa-home w-5"></i> Ringkasan
-            </a>
-            <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-white/5 hover:text-white rounded-lg transition-colors">
-                <i class="fas fa-newspaper w-5"></i> Manajemen Konten
-            </a>
-            <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-white/5 hover:text-white rounded-lg transition-colors">
-                <i class="fas fa-users w-5"></i> Pendaftaran
-            </a>
-            <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-white/5 hover:text-white rounded-lg transition-colors">
-                <i class="fas fa-cog w-5"></i> Pengaturan
-            </a>
-        </nav>
-        <div class="p-4 border-t border-white/5">
-            <button onclick="logout()" class="flex items-center gap-3 px-4 py-2 text-red-400 hover:bg-red-500/10 rounded-lg w-full transition-colors">
-                <i class="fas fa-sign-out-alt"></i> Keluar
-            </button>
-        </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
-        <!-- Top Header -->
-        <header class="h-20 bg-slate-900/50 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-8">
-            <h2 class="text-xl font-semibold text-white">Dasbor Utama</h2>
-            <div class="flex items-center gap-4">
-                <div class="text-right hidden sm:block">
-                    <div class="text-sm font-medium text-white">Administrator</div>
-                    <div class="text-xs text-slate-500">Super Admin</div>
-                </div>
-                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"></div>
+    <!-- Login Modal Overlay -->
+    <div id="loginOverlay" class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm">
+        <div class="bg-slate-800 p-8 rounded-2xl border border-white/10 w-full max-w-md shadow-2xl">
+            <div class="text-center mb-8">
+                <i class="fas fa-lock text-4xl text-gold-400 mb-4"></i>
+                <h2 class="text-2xl font-bold text-white">Admin Access</h2>
+                <p class="text-gray-400 text-sm">Silakan login untuk mengelola konten.</p>
             </div>
-        </header>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-400 mb-2">Username</label>
+                    <input type="text" id="username" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold-400 transition" placeholder="admin">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm text-gray-400 mb-2">Password</label>
+                    <input type="password" id="password" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold-400 transition" placeholder="pesantren2026">
+                </div>
+                <button type="submit" class="w-full bg-emerald-900 hover:bg-emerald-800 text-white font-bold py-3 rounded-lg transition">MASUK DASHBOARD</button>
+                <p id="errorMsg" class="text-red-500 text-xs text-center mt-4 hidden">Username atau password salah!</p>
+            </form>
+        </div>
+    </div>
 
-        <!-- Scrollable Content -->
-        <div class="flex-1 overflow-y-auto p-8">
-            
-            <!-- Stats Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="bg-slate-900 border border-white/5 p-6 rounded-xl">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-slate-500 text-sm">Total Pengunjung (Bulan Ini)</p>
-                            <h3 class="text-3xl font-bold text-white mt-2">12,450</h3>
-                        </div>
-                        <div class="p-2 bg-blue-500/10 rounded-lg text-blue-400"><i class="fas fa-chart-line"></i></div>
-                    </div>
-                    <div class="mt-4 text-xs text-green-400 flex items-center gap-1">
-                        <i class="fas fa-arrow-up"></i> 12% dari bulan lalu
-                    </div>
-                </div>
-                <div class="bg-slate-900 border border-white/5 p-6 rounded-xl">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-slate-500 text-sm">Pendaftaran Aktif</p>
-                            <h3 class="text-3xl font-bold text-white mt-2">843</h3>
-                        </div>
-                        <div class="p-2 bg-purple-500/10 rounded-lg text-purple-400"><i class="fas fa-user-graduate"></i></div>
-                    </div>
-                    <div class="mt-4 text-xs text-slate-500">Kuota tersisa: 157</div>
-                </div>
-                <div class="bg-slate-900 border border-white/5 p-6 rounded-xl">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-slate-500 text-sm">Pertanyaan Tertunda</p>
-                            <h3 class="text-3xl font-bold text-white mt-2">24</h3>
-                        </div>
-                        <div class="p-2 bg-orange-500/10 rounded-lg text-orange-400"><i class="fas fa-envelope"></i></div>
-                    </div>
-                    <div class="mt-4 text-xs text-orange-400 cursor-pointer hover:underline">Lihat semua pesan</div>
-                </div>
+    <!-- Main Dashboard Content (Hidden by default) -->
+    <div id="dashboardContent" class="hidden min-h-screen flex">
+        
+        <!-- Sidebar -->
+        <aside class="w-64 bg-slate-950 border-r border-white/5 hidden md:flex flex-col">
+            <div class="p-6 border-b border-white/5">
+                <h1 class="font-serif text-xl font-bold text-white">AL-IZZAH <span class="text-gold-400 text-xs block font-sans font-normal">ADMIN PANEL</span></h1>
+            </div>
+            <nav class="flex-1 p-4 space-y-2">
+                <a href="#" onclick="switchTab('news')" class="flex items-center gap-3 px-4 py-3 bg-emerald-900/20 text-emerald-400 rounded-lg border border-emerald-900/50">
+                    <i class="fas fa-newspaper w-5"></i> Berita & Pengumuman
+                </a>
+                <a href="#" onclick="switchTab('psb')" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-slate-900 hover:text-white rounded-lg transition">
+                    <i class="fas fa-users w-5"></i> Data Pendaftar (PSB)
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-slate-900 hover:text-white rounded-lg transition">
+                    <i class="fas fa-cog w-5"></i> Pengaturan
+                </a>
+            </nav>
+            <div class="p-4 border-t border-white/5">
+                <button onclick="logout()" class="flex items-center gap-3 text-red-400 hover:text-red-300 text-sm w-full px-4 py-2">
+                    <i class="fas fa-sign-out-alt"></i> Keluar
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <!-- Header Mobile -->
+            <div class="md:hidden flex justify-between items-center mb-8">
+                <h1 class="font-bold text-xl">Dashboard</h1>
+                <button onclick="logout()" class="text-red-400"><i class="fas fa-sign-out-alt"></i></button>
             </div>
 
-            <!-- CMS Content Manager -->
-            <div class="bg-slate-900 border border-white/5 rounded-xl overflow-hidden">
-                <div class="p-6 border-b border-white/5 flex justify-between items-center">
-                    <h3 class="text-lg font-bold text-white">Manajemen Berita & Pengumuman</h3>
-                    <button onclick="openAddModal()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                        <i class="fas fa-plus mr-2"></i> Tambah Post
+            <!-- Tab: News Management -->
+            <div id="tab-news">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-2xl font-bold text-white">Manajemen Berita</h2>
+                    <button onclick="openModal()" class="bg-gold-400 hover:bg-gold-500 text-slate-900 px-4 py-2 rounded-lg font-bold text-sm transition">
+                        <i class="fas fa-plus mr-2"></i> Tambah Berita
                     </button>
                 </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm text-slate-400">
-                        <thead class="bg-slate-800/50 text-slate-200 uppercase text-xs">
+
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-slate-800 p-6 rounded-xl border border-white/5">
+                        <p class="text-gray-400 text-sm">Total Berita</p>
+                        <h3 class="text-3xl font-bold text-white mt-2" id="totalNews">0</h3>
+                    </div>
+                    <div class="bg-slate-800 p-6 rounded-xl border border-white/5">
+                        <p class="text-gray-400 text-sm">Pendaftar Baru Hari Ini</p>
+                        <h3 class="text-3xl font-bold text-emerald-400 mt-2">12</h3>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="bg-slate-800 rounded-xl border border-white/5 overflow-hidden">
+                    <table class="w-full text-left text-sm text-gray-400">
+                        <thead class="bg-slate-900 text-gray-200 uppercase text-xs">
                             <tr>
                                 <th class="px-6 py-4">Judul</th>
-                                <th class="px-6 py-4">Kategori</th>
                                 <th class="px-6 py-4">Tanggal</th>
+                                <th class="px-6 py-4">Status</th>
                                 <th class="px-6 py-4 text-right">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody id="cms-table-body" class="divide-y divide-white/5">
-                            <!-- Data will be injected here by JS -->
+                        <tbody id="newsTableBody" class="divide-y divide-white/5">
+                            <!-- Data will be injected here via JS -->
                         </tbody>
                     </table>
                 </div>
-                <div id="empty-state" class="hidden p-8 text-center text-slate-500">
-                    Belum ada artikel berita.
+            </div>
+
+            <!-- Tab: PSB Data (Simple View) -->
+            <div id="tab-psb" class="hidden">
+                <h2 class="text-2xl font-bold text-white mb-8">Data Pendaftar Masuk (Simulasi)</h2>
+                <div class="bg-slate-800 rounded-xl border border-white/5 overflow-hidden">
+                    <table class="w-full text-left text-sm text-gray-400">
+                        <thead class="bg-slate-900 text-gray-200 uppercase text-xs">
+                            <tr>
+                                <th class="px-6 py-4">Nama Calon Santri</th>
+                                <th class="px-6 py-4">Asal Sekolah</th>
+                                <th class="px-6 py-4">Program</th>
+                                <th class="px-6 py-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5">
+                            <tr class="hover:bg-slate-700/50 transition">
+                                <td class="px-6 py-4 font-medium text-white">Muhammad Fatih</td>
+                                <td class="px-6 py-4">SDIT Al-Azhar</td>
+                                <td class="px-6 py-4">SMP Tahfidz</td>
+                                <td class="px-6 py-4"><span class="bg-green-900 text-green-300 px-2 py-1 rounded text-xs">Verifikasi Berkas</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/50 transition">
+                                <td class="px-6 py-4 font-medium text-white">Aisyah Humaira</td>
+                                <td class="px-6 py-4">MI Nurul Huda</td>
+                                <td class="px-6 py-4">SMA Science</td>
+                                <td class="px-6 py-4"><span class="bg-yellow-900 text-yellow-300 px-2 py-1 rounded text-xs">Menunggu Tes</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
+    </div>
 
-    <!-- Add/Edit Modal -->
-    <div id="post-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center">
-        <div class="bg-slate-900 border border-white/10 rounded-xl w-full max-w-lg p-6 m-4 shadow-2xl">
-            <h3 class="text-xl font-bold text-white mb-4" id="modal-title">Tambah Artikel Baru</h3>
-            <form id="post-form" class="space-y-4">
-                <input type="hidden" id="post-id">
-                <div>
-                    <label class="block text-sm text-slate-400 mb-1">Judul Artikel</label>
-                    <input type="text" id="post-title" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-blue-500 outline-none">
+    <!-- Add/Edit News Modal -->
+    <div id="newsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div class="bg-slate-800 p-6 rounded-xl border border-white/10 w-full max-w-lg m-4">
+            <h3 class="text-xl font-bold text-white mb-4" id="modalTitle">Tambah Berita Baru</h3>
+            <form id="newsForm" onsubmit="saveNews(event)">
+                <input type="hidden" id="newsId">
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-400 mb-2">Judul Berita</label>
+                    <input type="text" id="newsTitle" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:border-gold-400 outline-none">
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm text-slate-400 mb-1">Kategori</label>
-                        <select id="post-category" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-blue-500 outline-none">
-                            <option value="AKADEMIK">Akademik</option>
-                            <option value="SENI">Seni</option>
-                            <option value="ALUMNI">Alumni</option>
-                            <option value="UMUM">Umum</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm text-slate-400 mb-1">Tanggal</label>
-                        <input type="date" id="post-date" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-blue-500 outline-none">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm text-slate-400 mb-1">Ringkasan Konten</label>
-                    <textarea id="post-content" rows="3" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-blue-500 outline-none"></textarea>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-400 mb-2">Isi Konten</label>
+                    <textarea id="newsContent" rows="4" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:border-gold-400 outline-none"></textarea>
                 </div>
                 <div class="flex justify-end gap-3 mt-6">
-                    <button type="button" onclick="closePostModal()" class="px-4 py-2 text-slate-400 hover:text-white transition-colors">Batal</button>
-                    <button type="submit" class="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium transition-colors">Simpan</button>
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 text-gray-400 hover:text-white">Batal</button>
+                    <button type="submit" class="px-6 py-2 bg-emerald-900 hover:bg-emerald-800 text-white rounded-lg font-bold">Simpan</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
-        // --- Auth Check ---
-        if (!sessionStorage.getItem('isLoggedIn')) {
-            window.location.href = 'index.html';
+        // --- AUTHENTICATION LOGIC ---
+        function handleLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            
+            if(u === 'admin' && p === 'pesantren2026') {
+                localStorage.setItem('isLoggedIn', 'true');
+                checkAuth();
+            } else {
+                document.getElementById('errorMsg').classList.remove('hidden');
+            }
         }
 
         function logout() {
-            sessionStorage.removeItem('isLoggedIn');
-            window.location.href = 'index.html';
+            localStorage.removeItem('isLoggedIn');
+            location.reload();
         }
 
-        // --- CMS Logic (LocalStorage) ---
-        const STORAGE_KEY = 'nexus_cms_data';
-        
-        // Initial Dummy Data if empty
-        const initialData = [
-            { id: 1, title: 'Tim Robotika Nexus Juara Nasional', category: 'AKADEMIK', date: '2026-09-12', content: 'Siswa kelas 11 berhasil...' },
-            { id: 2, title: 'Pameran Seni Digital', category: 'SENI', date: '2026-09-10', content: 'Karya siswa menggunakan AI...' }
+        function checkAuth() {
+            const isLogged = localStorage.getItem('isLoggedIn');
+            if(isLogged === 'true') {
+                document.getElementById('loginOverlay').classList.add('hidden');
+                document.getElementById('dashboardContent').classList.remove('hidden');
+                loadNews(); // Load data when logged in
+            } else {
+                document.getElementById('loginOverlay').classList.remove('hidden');
+                document.getElementById('dashboardContent').classList.add('hidden');
+            }
+        }
+
+        // --- NAVIGATION LOGIC ---
+        function switchTab(tabName) {
+            document.getElementById('tab-news').classList.add('hidden');
+            document.getElementById('tab-psb').classList.add('hidden');
+            
+            document.getElementById('tab-' + tabName).classList.remove('hidden');
+        }
+
+        // --- CRUD NEWS LOGIC (LOCALSTORAGE) ---
+        let newsData = JSON.parse(localStorage.getItem('newsData')) || [
+            { id: 1, title: "Penerimaan Santri Baru Gelombang 1 Dibuka", date: "2026-09-01", content: "Segera daftarkan putra-putri anda..." },
+            { id: 2, title: "Juara 1 Olimpiade Robotik Nasional", date: "2026-08-15", content: "Tim robotik Al-Izzah kembali menorehkan prestasi..." }
         ];
 
-        function getData() {
-            const data = localStorage.getItem(STORAGE_KEY);
-            return data ? JSON.parse(data) : initialData;
-        }
-
-        function saveData(data) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            renderTable();
-        }
-
-        function renderTable() {
-            const data = getData();
-            const tbody = document.getElementById('cms-table-body');
-            const emptyState = document.getElementById('empty-state');
-            
+        function loadNews() {
+            const tbody = document.getElementById('newsTableBody');
             tbody.innerHTML = '';
-            
-            if (data.length === 0) {
-                emptyState.classList.remove('hidden');
-                return;
-            }
-            emptyState.classList.add('hidden');
+            document.getElementById('totalNews').innerText = newsData.length;
 
-            data.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.className = 'hover:bg-white/5 transition-colors';
-                
-                // Color badge logic
-                let badgeColor = 'bg-slate-700 text-slate-300';
-                if(item.category === 'AKADEMIK') badgeColor = 'bg-blue-900/50 text-blue-400 border border-blue-500/20';
-                if(item.category === 'SENI') badgeColor = 'bg-purple-900/50 text-purple-400 border border-purple-500/20';
-
-                tr.innerHTML = `
-                    <td class="px-6 py-4 font-medium text-white">${item.title}</td>
-                    <td class="px-6 py-4"><span class="px-2 py-1 rounded text-xs ${badgeColor}">${item.category}</span></td>
-                    <td class="px-6 py-4">${item.date}</td>
-                    <td class="px-6 py-4 text-right space-x-3">
-                        <button onclick="editPost(${item.id})" class="text-blue-400 hover:text-blue-300"><i class="fas fa-edit"></i></button>
-                        <button onclick="deletePost(${item.id})" class="text-red-400 hover:text-red-300"><i class="fas fa-trash"></i></button>
-                    </td>
+            newsData.forEach(item => {
+                const row = `
+                    <tr class="hover:bg-slate-700/30 transition">
+                        <td class="px-6 py-4 font-medium text-white">${item.title}</td>
+                        <td class="px-6 py-4">${item.date}</td>
+                        <td class="px-6 py-4"><span class="bg-emerald-900/50 text-emerald-400 px-2 py-1 rounded text-xs border border-emerald-800">Published</span></td>
+                        <td class="px-6 py-4 text-right">
+                            <button onclick="editNews(${item.id})" class="text-blue-400 hover:text-blue-300 mr-3"><i class="fas fa-edit"></i></button>
+                            <button onclick="deleteNews(${item.id})" class="text-red-400 hover:text-red-300"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
                 `;
-                tbody.appendChild(tr);
+                tbody.innerHTML += row;
             });
         }
 
-        // --- Modal & Form Handling ---
-        const postModal = document.getElementById('post-modal');
-        const postForm = document.getElementById('post-form');
-
-        function openAddModal() {
-            postForm.reset();
-            document.getElementById('post-id').value = '';
-            document.getElementById('modal-title').innerText = 'Tambah Artikel Baru';
-            postModal.classList.remove('hidden');
-        }
-
-        function closePostModal() {
-            postModal.classList.add('hidden');
-        }
-
-        function editPost(id) {
-            const data = getData();
-            const item = data.find(d => d.id === id);
-            if (item) {
-                document.getElementById('post-id').value = item.id;
-                document.getElementById('post-title').value = item.title;
-                document.getElementById('post-category').value = item.category;
-                document.getElementById('post-date').value = item.date;
-                document.getElementById('post-content').value = item.content;
-                document.getElementById('modal-title').innerText = 'Edit Artikel';
-                postModal.classList.remove('hidden');
-            }
-        }
-
-        function deletePost(id) {
-            if(confirm('Yakin ingin menghapus artikel ini?')) {
-                let data = getData();
-                data = data.filter(d => d.id !== id);
-                saveData(data);
-            }
-        }
-
-        postForm.addEventListener('submit', (e) => {
+        function saveNews(e) {
             e.preventDefault();
-            const id = document.getElementById('post-id').value;
-            const newPost = {
-                id: id ? parseInt(id) : Date.now(),
-                title: document.getElementById('post-title').value,
-                category: document.getElementById('post-category').value,
-                date: document.getElementById('post-date').value,
-                content: document.getElementById('post-content').value
-            };
+            const id = document.getElementById('newsId').value;
+            const title = document.getElementById('newsTitle').value;
+            const content = document.getElementById('newsContent').value;
+            const date = new Date().toISOString().split('T')[0];
 
-            let data = getData();
-            if (id) {
-                // Update
-                const index = data.findIndex(d => d.id == id);
-                if (index !== -1) data[index] = newPost;
+            if(id) {
+                // Edit
+                const index = newsData.findIndex(n => n.id == id);
+                newsData[index] = { id: parseInt(id), title, content, date };
             } else {
-                // Create
-                data.unshift(newPost);
+                // Add
+                const newId = newsData.length > 0 ? Math.max(...newsData.map(n => n.id)) + 1 : 1;
+                newsData.push({ id: newId, title, content, date });
             }
-            
-            saveData(data);
-            closePostModal();
-        });
+
+            localStorage.setItem('newsData', JSON.stringify(newsData));
+            closeModal();
+            loadNews();
+        }
+
+        function deleteNews(id) {
+            if(confirm('Yakin ingin menghapus berita ini?')) {
+                newsData = newsData.filter(n => n.id !== id);
+                localStorage.setItem('newsData', JSON.stringify(newsData));
+                loadNews();
+            }
+        }
+
+        function editNews(id) {
+            const item = newsData.find(n => n.id === id);
+            document.getElementById('newsId').value = item.id;
+            document.getElementById('newsTitle').value = item.title;
+            document.getElementById('newsContent').value = item.content;
+            document.getElementById('modalTitle').innerText = "Edit Berita";
+            document.getElementById('newsModal').classList.remove('hidden');
+        }
+
+        // --- MODAL UTILS ---
+        function openModal() {
+            document.getElementById('newsForm').reset();
+            document.getElementById('newsId').value = '';
+            document.getElementById('modalTitle').innerText = "Tambah Berita Baru";
+            document.getElementById('newsModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('newsModal').classList.add('hidden');
+        }
 
         // Init
-        renderTable();
-
+        checkAuth();
     </script>
 </body>
 </html>
