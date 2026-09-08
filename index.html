@@ -3,412 +3,418 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Academy | Shaping Future Leaders</title>
+    <title>Pesantren Modern Al-Izzah | International Islamic Boarding School</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Plus Jakarta Sans -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome -->
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
                     colors: {
-                        nexus: {
-                            dark: '#0f172a',
-                            accent: '#3b82f6',
-                            glass: 'rgba(255, 255, 255, 0.05)',
+                        emerald: {
+                            900: '#064E3B', // Primary Dark
+                            800: '#065F46',
+                        },
+                        gold: {
+                            400: '#D97706', // Accent Gold
+                            500: '#B45309',
+                        },
+                        slate: {
+                            900: '#0f172a', // Dark Background
                         }
                     },
-                    animation: {
-                        'gradient-x': 'gradient-x 15s ease infinite',
-                    },
-                    keyframes: {
-                        'gradient-x': {
-                            '0%, 100%': {
-                                'background-size': '200% 200%',
-                                'background-position': 'left center'
-                            },
-                            '50%': {
-                                'background-size': '200% 200%',
-                                'background-position': 'right center'
-                            },
-                        },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
+
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.6);
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #064E3B; border-radius: 4px; }
+        
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .text-gradient {
-            background: linear-gradient(to right, #60a5fa, #a78bfa);
+        
+        .text-gold-gradient {
+            background: linear-gradient(to right, #D97706, #FCD34D, #D97706);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(6, 78, 59, 0.3), rgba(15, 23, 42, 0.9));
+        }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-200 antialiased selection:bg-blue-500 selection:text-white">
+<body class="bg-slate-900 text-gray-100 font-sans antialiased overflow-x-hidden">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 transition-all duration-300 glass-panel border-b border-white/5" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl">N</div>
-                    <span class="font-bold text-xl tracking-tight text-white">Nexus<span class="text-blue-400">Academy</span></span>
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-emerald-900 rounded-full flex items-center justify-center border border-gold-400 shadow-[0_0_15px_rgba(217,119,6,0.5)]">
+                    <i class="fas fa-mosque text-gold-400 text-lg"></i>
                 </div>
+                <div>
+                    <h1 class="font-serif text-xl font-bold text-white tracking-wider group-hover:text-gold-400 transition">AL-IZZAH</h1>
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400">International Boarding School</p>
+                </div>
+            </a>
 
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#home" class="text-sm font-medium hover:text-blue-400 transition-colors">Beranda</a>
-                    <a href="#academics" class="text-sm font-medium hover:text-blue-400 transition-colors">Akademik</a>
-                    <a href="#news" class="text-sm font-medium hover:text-blue-400 transition-colors">Berita</a>
-                    <a href="#contact" class="text-sm font-medium hover:text-blue-400 transition-colors">Kontak</a>
-                </div>
-
-                <!-- CTA & Mobile Toggle -->
-                <div class="flex items-center gap-4">
-                    <button onclick="openLoginModal()" class="hidden md:inline-flex items-center justify-center px-5 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm border-white/10">
-                        Portal Login
-                    </button>
-                    <button class="md:hidden text-white focus:outline-none" onclick="toggleMobileMenu()">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="text-sm font-medium hover:text-gold-400 transition">Beranda</a>
+                <a href="#about" class="text-sm font-medium hover:text-gold-400 transition">Profil</a>
+                <a href="#program" class="text-sm font-medium hover:text-gold-400 transition">Kurikulum</a>
+                <a href="#facilities" class="text-sm font-medium hover:text-gold-400 transition">Fasilitas</a>
+                <a href="#contact" class="text-sm font-medium hover:text-gold-400 transition">Kontak</a>
             </div>
+
+            <!-- CTA Button -->
+            <div class="hidden md:block">
+                <a href="dashboard.html" class="px-6 py-2.5 bg-gradient-to-r from-emerald-900 to-emerald-800 border border-emerald-700 text-white text-sm font-semibold rounded-full hover:shadow-[0_0_20px_rgba(6,78,59,0.6)] transition transform hover:-translate-y-0.5">
+                    Portal Login
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white text-2xl" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
         
-        <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/10">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5">Beranda</a>
-                <a href="#academics" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5">Akademik</a>
-                <a href="#news" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5">Berita</a>
-                <button onclick="openLoginModal()" class="w-full text-left block px-3 py-2 rounded-md text-base font-medium text-blue-400 hover:bg-white/5">Portal Login</button>
-            </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-slate-900 border-t border-gray-800 p-6 flex-col gap-4 shadow-2xl">
+            <a href="#home" class="block text-gray-300 hover:text-gold-400">Beranda</a>
+            <a href="#about" class="block text-gray-300 hover:text-gold-400">Profil</a>
+            <a href="#program" class="block text-gray-300 hover:text-gold-400">Kurikulum</a>
+            <a href="dashboard.html" class="block text-gold-400 font-bold">Portal Login</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <!-- Animated Background -->
-        <div class="absolute inset-0 bg-slate-950">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-slate-950 to-purple-900/20 animate-gradient-x"></div>
-            <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+    <section id="home" class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+        <!-- Background Image (Placeholder for Video/Cinematic Shot) -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1542259681-dadcd731560b?q=80&w=2070&auto=format&fit=crop" alt="Pesantren Campus" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 hero-overlay"></div>
         </div>
 
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-            <span class="inline-block py-1 px-3 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold tracking-wide uppercase mb-6">
-                Pendaftaran Tahun Ajaran 2026/2027 Dibuka
+        <div class="container mx-auto px-6 relative z-10 text-center pt-20">
+            <span class="inline-block py-1 px-3 border border-gold-400/50 rounded-full bg-black/30 backdrop-blur-sm text-gold-400 text-xs font-bold tracking-widest mb-6" data-aos="fade-down">
+                ESTABLISHED 2010
             </span>
-            <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
-                Membentuk Pemimpin <br>
-                <span class="text-gradient">Masa Depan</span>
-            </h1>
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10">
-                Nexus Academy menggabungkan kurikulum berbasis AI, seni humaniora, dan kepemimpinan global untuk menciptakan generasi inovator berikutnya.
-            </p>
             
-            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16">
-                <a href="#academics" class="px-8 py-4 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all shadow-lg shadow-blue-600/20">
-                    Jelajahi Program
+            <h1 class="font-serif text-5xl md:text-7xl font-bold text-white leading-tight mb-6" data-aos="fade-up" data-aos-delay="100">
+                Membangun Generasi <br>
+                <span class="text-gold-gradient">Hafidz & Global Leader</span>
+            </h1>
+            
+            <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light" data-aos="fade-up" data-aos-delay="200">
+                Integrasi kurikulum Cambridge, Tahfidzul Quran 30 Juz, dan Karakter Islami dalam ekosistem pendidikan berteknologi modern.
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="300">
+                <a href="#register" class="px-8 py-4 bg-gold-400 hover:bg-gold-500 text-slate-900 font-bold rounded-lg shadow-lg hover:shadow-gold-400/20 transition transform hover:-translate-y-1">
+                    Daftar Santri Baru
                 </a>
-                <a href="#" class="px-8 py-4 rounded-full bg-transparent border border-slate-600 hover:border-white text-white font-semibold transition-all flex items-center justify-center gap-2 group">
-                    <i class="fas fa-play-circle text-sm group-hover:text-blue-400 transition-colors"></i> Tur Kampus Virtual
+                <a href="#tour" class="px-8 py-4 bg-transparent border border-white/30 hover:bg-white/10 text-white font-semibold rounded-lg backdrop-blur-md transition flex items-center justify-center gap-2">
+                    <i class="fas fa-play-circle"></i> Virtual Tour 360
                 </a>
             </div>
 
-            <!-- Dynamic Metrics -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-8">
+            <!-- Metrics -->
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-10" data-aos="fade-up" data-aos-delay="400">
                 <div>
-                    <div class="text-3xl font-bold text-white counter" data-target="1200">0</div>
-                    <div class="text-sm text-slate-500 uppercase tracking-wider mt-1">Siswa Aktif</div>
+                    <h3 class="text-3xl font-serif font-bold text-white">1,200+</h3>
+                    <p class="text-sm text-gray-400 uppercase tracking-wide">Santri Aktif</p>
                 </div>
                 <div>
-                    <div class="text-3xl font-bold text-white counter" data-target="85">0</div>
-                    <div class="text-sm text-slate-500 uppercase tracking-wider mt-1">Fakultas Ahli</div>
+                    <h3 class="text-3xl font-serif font-bold text-gold-400">850+</h3>
+                    <p class="text-sm text-gray-400 uppercase tracking-wide">Alumni Hafidz</p>
                 </div>
                 <div>
-                    <div class="text-3xl font-bold text-white counter" data-target="98">0</div>
-                    <div class="text-sm text-slate-500 uppercase tracking-wider mt-1">% Kelulusan</div>
+                    <h3 class="text-3xl font-serif font-bold text-white">50+</h3>
+                    <p class="text-sm text-gray-400 uppercase tracking-wide">Mitra Global</p>
                 </div>
                 <div>
-                    <div class="text-3xl font-bold text-white counter" data-target="45">0</div>
-                    <div class="text-sm text-slate-500 uppercase tracking-wider mt-1">Penghargaan</div>
+                    <h3 class="text-3xl font-serif font-bold text-white">A</h3>
+                    <p class="text-sm text-gray-400 uppercase tracking-wide">Akreditasi</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Academics Section -->
-    <section id="academics" class="py-24 bg-slate-900 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Keunggulan / Pillars -->
+    <section id="program" class="py-24 bg-slate-900 relative">
+        <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Jalur Akademik Unggulan</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">Kurikulum yang dirancang untuk menantang batas potensial setiap siswa.</p>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">Pilar Pendidikan Unggulan</h2>
+                <div class="w-24 h-1 bg-gold-400 mx-auto rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Card 1 -->
-                <div class="group relative p-8 rounded-2xl bg-slate-800/50 border border-white/5 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-blue-500/10">
-                    <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-robot text-xl"></i>
+                <div class="group bg-slate-800/50 p-8 rounded-2xl border border-white/5 hover:border-gold-400/50 transition duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-14 h-14 bg-emerald-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-400 transition duration-500">
+                        <i class="fas fa-quran text-2xl text-gold-400 group-hover:text-emerald-900 transition"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">AI & Robotika</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Pemrograman tingkat lanjut, machine learning dasar, dan etika teknologi.</p>
+                    <h3 class="text-xl font-bold text-white mb-3 font-serif">Tahfidz 30 Juz</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Program intensif hafalan Al-Quran dengan metode Talaqqi dan sanad yang jelas.</p>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="group relative p-8 rounded-2xl bg-slate-800/50 border border-white/5 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-purple-500/10">
-                    <div class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-flask text-xl"></i>
+                <div class="group bg-slate-800/50 p-8 rounded-2xl border border-white/5 hover:border-gold-400/50 transition duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-emerald-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-400 transition duration-500">
+                        <i class="fas fa-globe text-2xl text-gold-400 group-hover:text-emerald-900 transition"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">STEM Lanjutan</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Fokus pada bioteknologi, fisika terapan, dan penelitian ilmiah mandiri.</p>
+                    <h3 class="text-xl font-bold text-white mb-3 font-serif">Cambridge Curriculum</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Standar internasional IGCSE & A-Level untuk mempersiapkan studi ke universitas global.</p>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="group relative p-8 rounded-2xl bg-slate-800/50 border border-white/5 hover:border-pink-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-pink-500/10">
-                    <div class="w-12 h-12 rounded-lg bg-pink-500/20 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-palette text-xl"></i>
+                <div class="group bg-slate-800/50 p-8 rounded-2xl border border-white/5 hover:border-gold-400/50 transition duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-emerald-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-400 transition duration-500">
+                        <i class="fas fa-language text-2xl text-gold-400 group-hover:text-emerald-900 transition"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Seni & Desain</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Desain grafis, seni digital, dan kurasi budaya modern.</p>
+                    <h3 class="text-xl font-bold text-white mb-3 font-serif">Bilingual Area</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Penerapan Bahasa Arab dan Inggris sebagai bahasa komunikasi sehari-hari di kampus.</p>
                 </div>
 
                 <!-- Card 4 -->
-                <div class="group relative p-8 rounded-2xl bg-slate-800/50 border border-white/5 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-500/10">
-                    <div class="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-globe text-xl"></i>
+                <div class="group bg-slate-800/50 p-8 rounded-2xl border border-white/5 hover:border-gold-400/50 transition duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-emerald-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-400 transition duration-500">
+                        <i class="fas fa-robot text-2xl text-gold-400 group-hover:text-emerald-900 transition"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Kepemimpinan Global</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Diplomasi, ekonomi internasional, dan pengembangan karakter.</p>
+                    <h3 class="text-xl font-bold text-white mb-3 font-serif">Digital & Robotik</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Ekstrakurikuler coding, AI dasar, dan robotika untuk menghadapi era industri 4.0.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- News & Updates (Masonry-ish) -->
-    <section id="news" class="py-24 bg-slate-950">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-12">
+    <!-- Facilities Gallery (Masonry Style) -->
+    <section id="facilities" class="py-24 bg-slate-950">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Kehidupan Kampus</h2>
-                    <p class="text-slate-400">Berita terbaru dan prestasi siswa.</p>
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-white mb-2">Fasilitas Kelas Dunia</h2>
+                    <p class="text-gray-400">Menunjang kenyamanan belajar dan ibadah santri.</p>
                 </div>
-                <a href="#" class="text-blue-400 hover:text-blue-300 text-sm font-medium hidden md:block">Lihat Semua Berita <i class="fas fa-arrow-right ml-1"></i></a>
+                <a href="#" class="text-gold-400 hover:text-white transition mt-4 md:mt-0 flex items-center gap-2">
+                    Lihat Semua <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="news-container">
-                <!-- News Item 1 -->
-                <article class="rounded-2xl overflow-hidden bg-slate-900 border border-white/5 group cursor-pointer">
-                    <div class="h-48 bg-slate-800 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=600" alt="Robotics Lab" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">AKADEMIK</div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[200px]">
+                <!-- Item 1 (Large) -->
+                <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl cursor-pointer" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1564981797816-1043660bf987?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Masjid">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                        <div>
+                            <h4 class="text-white font-serif text-xl">Masjid Agung Al-Izzah</h4>
+                            <p class="text-gray-300 text-sm">Kapasitas 2000 Jamaah</p>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <div class="text-slate-500 text-xs mb-2">12 September 2026</div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Tim Robotika Nexus Juara Nasional</h3>
-                        <p class="text-slate-400 text-sm line-clamp-2">Siswa kelas 11 berhasil membawa pulang emas dalam kompetisi robotika tingkat nasional...</p>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="relative group overflow-hidden rounded-xl cursor-pointer" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a782?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Lab">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <h4 class="text-white font-bold">Laboratorium Sains</h4>
                     </div>
-                </article>
+                </div>
 
-                <!-- News Item 2 -->
-                <article class="rounded-2xl overflow-hidden bg-slate-900 border border-white/5 group cursor-pointer">
-                    <div class="h-48 bg-slate-800 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=600" alt="Art Exhibition" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 left-4 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded">SENI</div>
+                <!-- Item 3 -->
+                <div class="relative group overflow-hidden rounded-xl cursor-pointer" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Perpustakaan">
+                     <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition"></div>
+                     <div class="absolute bottom-4 left-4">
+                        <h4 class="text-white font-bold">Digital Library</h4>
                     </div>
-                    <div class="p-6">
-                        <div class="text-slate-500 text-xs mb-2">10 September 2026</div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Pameran Seni Digital "Future Vision"</h3>
-                        <p class="text-slate-400 text-sm line-clamp-2">Karya siswa menggunakan AI generatif dipamerkan di galeri pusat kota minggu ini.</p>
-                    </div>
-                </article>
+                </div>
 
-                <!-- News Item 3 -->
-                <article class="rounded-2xl overflow-hidden bg-slate-900 border border-white/5 group cursor-pointer">
-                    <div class="h-48 bg-slate-800 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=600" alt="Graduation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 left-4 bg-emerald-600 text-white text-xs font-bold px-2 py-1 rounded">ALUMNI</div>
+                 <!-- Item 4 (Wide) -->
+                 <div class="md:col-span-2 relative group overflow-hidden rounded-xl cursor-pointer" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Asrama">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                        <div>
+                            <h4 class="text-white font-serif text-xl">Asrama Modern</h4>
+                            <p class="text-gray-300 text-sm">Full AC & Keamanan 24 Jam</p>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <div class="text-slate-500 text-xs mb-2">05 September 2026</div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Reuni Alumni Angkatan 2016</h3>
-                        <p class="text-slate-400 text-sm line-clamp-2">Bertemu kembali dengan para pemimpin industri yang merupakan lulusan terbaik kami.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-emerald-900 relative overflow-hidden">
+        <!-- Decorative Pattern -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10" style="background-image: radial-gradient(#D97706 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-white">Kisah Sukses Alumni</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testi 1 -->
+                <div class="bg-white/5 backdrop-blur-md p-8 rounded-xl border border-white/10" data-aos="fade-up">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-12 h-12 rounded-full border-2 border-gold-400" alt="User">
+                        <div>
+                            <h4 class="text-white font-bold">Ahmad Zaki</h4>
+                            <p class="text-gold-400 text-xs">Mahasiswa Al-Azhar, Kairo</p>
+                        </div>
                     </div>
-                </article>
+                    <p class="text-gray-300 italic">"Kurikulum pesantren yang seimbang antara agama dan sains membuat saya mudah beradaptasi saat kuliah di Mesir. Fondasi bahasa Arab yang kuat adalah kuncinya."</p>
+                </div>
+
+                <!-- Testi 2 -->
+                <div class="bg-white/5 backdrop-blur-md p-8 rounded-xl border border-white/10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-12 h-12 rounded-full border-2 border-gold-400" alt="User">
+                        <div>
+                            <h4 class="text-white font-bold">Siti Aminah</h4>
+                            <p class="text-gold-400 text-xs">Beasiswa IIUM Malaysia</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Lingkungan yang kondusif untuk tahfidz dan dukungan penuh dari ustadzah membantu saya menyelesaikan hafalan 30 juz sebelum lulus SMA."</p>
+                </div>
+
+                <!-- Testi 3 -->
+                <div class="bg-white/5 backdrop-blur-md p-8 rounded-xl border border-white/10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://randomuser.me/api/portraits/men/85.jpg" class="w-12 h-12 rounded-full border-2 border-gold-400" alt="User">
+                        <div>
+                            <h4 class="text-white font-bold">Budi Santoso</h4>
+                            <p class="text-gold-400 text-xs">Wali Santri Angkatan 2020</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Perubahan akhlak anak saya sangat signifikan sejak masuk Al-Izzah. Disiplin, mandiri, dan santun. Fasilitas asramanya juga sangat bersih dan nyaman."</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-white/5 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+    <footer class="bg-slate-950 pt-20 pb-10 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                 <div class="col-span-1 md:col-span-1">
-                    <div class="flex items-center gap-2 mb-4">
-                        <div class="w-8 h-8 rounded bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">N</div>
-                        <span class="font-bold text-lg text-white">Nexus Academy</span>
+                    <div class="flex items-center gap-2 mb-6">
+                        <i class="fas fa-mosque text-gold-400 text-2xl"></i>
+                        <h2 class="font-serif text-2xl font-bold text-white">AL-IZZAH</h2>
                     </div>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Institusi pendidikan masa depan yang mengintegrasikan teknologi, kemanusiaan, dan inovasi.
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Lembaga pendidikan Islam modern yang berkomitmen mencetak generasi Qur'ani, berwawasan global, dan siap memimpin masa depan.
                     </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-gray-400 hover:bg-gold-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-gray-400 hover:bg-gold-400 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-gray-400 hover:bg-gold-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                    </div>
                 </div>
+
                 <div>
-                    <h4 class="text-white font-semibold mb-4">Navigasi</h4>
-                    <ul class="space-y-2 text-sm text-slate-400">
-                        <li><a href="#" class="hover:text-blue-400">Tentang Kami</a></li>
-                        <li><a href="#" class="hover:text-blue-400">Akademik</a></li>
-                        <li><a href="#" class="hover:text-blue-400">Pendaftaran</a></li>
-                        <li><a href="#" class="hover:text-blue-400">Karir</a></li>
+                    <h3 class="text-white font-bold mb-6">Navigasi</h3>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-gold-400 transition">Tentang Kami</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Program Pendidikan</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Pendaftaran (PSB)</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Karir & Lowongan</a></li>
                     </ul>
                 </div>
+
                 <div>
-                    <h4 class="text-white font-semibold mb-4">Kontak</h4>
-                    <ul class="space-y-2 text-sm text-slate-400">
-                        <li><i class="fas fa-map-marker-alt w-5"></i> Jl. Inovasi No. 88, Jakarta</li>
-                        <li><i class="fas fa-phone w-5"></i> +62 21 5555 8888</li>
-                        <li><i class="fas fa-envelope w-5"></i> info@nexusacademy.id</li>
+                    <h3 class="text-white font-bold mb-6">Program Unggulan</h3>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-gold-400 transition">Tahfidz Intensif</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Cambridge IGCSE</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Robotics Club</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Public Speaking</a></li>
                     </ul>
                 </div>
+
                 <div>
-                    <h4 class="text-white font-semibold mb-4">Newsletter</h4>
-                    <form class="flex gap-2" onsubmit="event.preventDefault(); alert('Terima kasih telah berlangganan!');">
-                        <input type="email" placeholder="Email Anda" class="bg-slate-800 border border-slate-700 text-white text-sm rounded-lg px-3 py-2 w-full focus:outline-none focus:border-blue-500">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-2 rounded-lg transition-colors"><i class="fas fa-paper-plane"></i></button>
-                    </form>
+                    <h3 class="text-white font-bold mb-6">Hubungi Kami</h3>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-gold-400 mt-1"></i>
+                            <span>Jl. Pendidikan Islam No. 99, Kota Baru, Indonesia 40123</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone text-gold-400"></i>
+                            <span>+62 812-3456-7890</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-gold-400"></i>
+                            <span>info@alizzah.sch.id</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-                <p>&copy; 2026 Nexus Academy. All rights reserved.</p>
-                <div class="flex space-x-4 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
-                </div>
+
+            <div class="border-t border-white/5 pt-8 text-center text-sm text-gray-500">
+                &copy; 2026 Pesantren Modern Al-Izzah. All Rights Reserved. Designed with Qwen.
             </div>
         </div>
     </footer>
 
-    <!-- Login Modal -->
-    <div id="login-modal" class="fixed inset-0 z-[60] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity" onclick="closeLoginModal()"></div>
-        <div class="fixed inset-0 z-10 overflow-y-auto">
-            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
-                <div class="relative transform overflow-hidden rounded-2xl bg-slate-900 border border-white/10 text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md p-8">
-                    <div class="text-center mb-6">
-                        <h3 class="text-2xl font-bold text-white" id="modal-title">Portal Admin</h3>
-                        <p class="text-slate-400 text-sm mt-2">Masuk untuk mengelola konten CMS</p>
-                    </div>
-                    <form id="login-form" class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-slate-300 mb-1">Username</label>
-                            <input type="text" id="username" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="admin">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-slate-300 mb-1">Password</label>
-                            <input type="password" id="password" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="••••••••">
-                        </div>
-                        <div id="login-error" class="text-red-400 text-xs hidden">Username atau password salah.</div>
-                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 rounded-lg transition-colors mt-4">Masuk Dashboard</button>
-                    </form>
-                    <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // --- Logic Interaktivitas ---
+        // Init AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
 
-        // 1. Mobile Menu Toggle
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-nav', 'py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('glass-nav', 'py-2');
+                navbar.classList.add('py-4');
+            }
+        });
+
+        // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
         }
-
-        // 2. Login Modal Logic
-        const modal = document.getElementById('login-modal');
-        const loginForm = document.getElementById('login-form');
-        const loginError = document.getElementById('login-error');
-
-        function openLoginModal() {
-            modal.classList.remove('hidden');
-        }
-
-        function closeLoginModal() {
-            modal.classList.add('hidden');
-            loginError.classList.add('hidden');
-            loginForm.reset();
-        }
-
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-
-            // Mock Authentication
-            if (user === 'admin' && pass === 'admin2026') {
-                sessionStorage.setItem('isLoggedIn', 'true');
-                window.location.href = 'dashboard.html';
-            } else {
-                loginError.classList.remove('hidden');
-            }
-        });
-
-        // 3. Dynamic Counter Animation
-        const counters = document.querySelectorAll('.counter');
-        const speed = 200;
-
-        const animateCounters = () => {
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    const inc = target / speed;
-
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 20);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCount();
-            });
-        };
-
-        // Trigger animation when hero is in view
-        let counted = false;
-        window.addEventListener('scroll', () => {
-            if (!counted && window.scrollY > 100) {
-                animateCounters();
-                counted = true;
-            }
-        });
-        
-        // Initial trigger just in case
-        setTimeout(animateCounters, 1000);
-
     </script>
 </body>
 </html>
