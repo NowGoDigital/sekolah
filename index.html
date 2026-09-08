@@ -12,6 +12,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font khusus tanda tangan (hanya untuk section sambutan) -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -75,6 +77,9 @@
             transform: translateY(10px);
             transition: all 0.3s ease-in-out;
         }
+
+        /* Font tanda tangan pimpinan (section sambutan) */
+        .font-signature { font-family: 'Great Vibes', cursive; }
     </style>
 </head>
 <body class="bg-slate-900 text-gray-100 font-sans antialiased overflow-x-hidden">
@@ -103,7 +108,7 @@
                         Profil <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
                     </button>
                     <div class="dropdown-menu absolute top-full left-0 w-64 bg-slate-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden py-2">
-                        <a href="https://nowgodigital.github.io/sekolah/profil.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                        <a href="profil.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
                             <i class="fas fa-school w-5 text-gold-400/70 mr-2"></i> Profil Sekolah
                             <span class="block text-[10px] text-gray-500 mt-0.5 pl-7">Visi, Misi & Sejarah</span>
                         </a>
@@ -137,7 +142,7 @@
                     </div>
                 </div>
 
-                <!-- DROPDOWN: SPMB ONLINE (KINI 2 SUB MENU) -->
+                <!-- DROPDOWN: SPMB ONLINE -->
                 <div class="relative group">
                     <button class="text-sm font-medium text-gold-400 hover:text-gold-light transition flex items-center gap-1.5 py-2">
                         <span class="relative flex h-2 w-2">
@@ -181,20 +186,19 @@
             
             <div class="border-l-2 border-emerald-800 pl-4 space-y-3">
                 <p class="text-xs text-gold-400 uppercase tracking-widest font-bold mb-1">Profil</p>
-                <a href="#profil-sekolah" class="block text-sm text-gray-400 hover:text-white">Profil Sekolah (Visi, Misi, Sejarah)</a>
-                <a href="#struktur" class="block text-sm text-gray-400 hover:text-white">Struktur Organisasi</a>
+                <a href="profil.html" class="block text-sm text-gray-400 hover:text-white">Profil Sekolah (Visi, Misi, Sejarah)</a>
+                <a href="struktur.html" class="block text-sm text-gray-400 hover:text-white">Struktur Organisasi</a>
                 <a href="#facilities" class="block text-sm text-gray-400 hover:text-white">Fasilitas & Infrastruktur</a>
-                <a href="#galeri" class="block text-sm text-gray-400 hover:text-white">Galeri Foto & Video</a>
+                <a href="galeri.html" class="block text-sm text-gray-400 hover:text-white">Galeri Foto & Video</a>
             </div>
 
             <div class="border-l-2 border-emerald-800 pl-4 space-y-3">
                 <p class="text-xs text-gold-400 uppercase tracking-widest font-bold mb-1">Kabar Berita</p>
-                <a href="#berita" class="block text-sm text-gray-400 hover:text-white">Berita & Artikel Sekolah</a>
-                <a href="#agenda" class="block text-sm text-gray-400 hover:text-white">Agenda & Kalender Kegiatan</a>
-                <a href="#prestasi" class="block text-sm text-gray-400 hover:text-white">Prestasi & Penghargaan</a>
+                <a href="berita.html" class="block text-sm text-gray-400 hover:text-white">Berita & Artikel Sekolah</a>
+                <a href="agenda.html" class="block text-sm text-gray-400 hover:text-white">Agenda & Kalender Kegiatan</a>
+                <a href="prestasi.html" class="block text-sm text-gray-400 hover:text-white">Prestasi & Penghargaan</a>
             </div>
 
-            <!-- Mobile SPMB (KINI 2 SUB MENU) -->
             <div class="border-l-2 border-gold-400 pl-4 space-y-3 bg-gold-400/5 rounded-r-lg py-3 pr-3">
                 <p class="text-xs text-gold-400 uppercase tracking-widest font-bold mb-1"><i class="fas fa-bolt mr-1"></i> SPMB Online</p>
                 <a href="#spmb-info" class="block text-sm text-gray-300 hover:text-gold-400">Halaman Informasi SPMB</a>
@@ -277,6 +281,98 @@
         
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce text-white/50">
             <i class="fas fa-chevron-down text-xl"></i>
+        </div>
+    </section>
+
+    <!-- ============ SAMBUTAN PIMPINAN PONDOK PESANTREN (BARU) ============ -->
+    <section id="sambutan" class="py-24 bg-slate-950 relative overflow-hidden">
+        <!-- Ornamen cahaya & pola islami halus -->
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-emerald-900/30 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-gold-400/5 rounded-full blur-3xl"></div>
+        <div class="absolute inset-0 opacity-[0.04]" style="background-image: radial-gradient(#D97706 1px, transparent 1px); background-size: 28px 28px;"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-14 items-center">
+                
+                <!-- KOLOM KIRI: FOTO PIMPINAN -->
+                <div class="lg:col-span-5" data-aos="fade-right">
+                    <div class="relative max-w-md mx-auto lg:mx-0 mt-8 lg:mt-0">
+                        <!-- Bingkai emas offset (khas editorial premium) -->
+                        <div class="absolute -top-5 -left-5 w-full h-full border-2 border-gold-400/40 rounded-2xl"></div>
+                        <div class="absolute -bottom-5 -right-5 w-full h-full border border-emerald-700/60 rounded-2xl"></div>
+                        
+                        <!-- Foto -->
+                        <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                            <img src="https://randomuser.me/api/portraits/men/61.jpg" alt="KH. Abdullah Izzah, Lc., M.A." class="w-full h-[420px] md:h-[480px] object-cover object-top">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            
+                            <!-- Papan nama di bawah foto -->
+                            <div class="absolute bottom-0 left-0 right-0 p-5">
+                                <div class="bg-slate-900/80 backdrop-blur-md border border-gold-400/30 rounded-xl px-5 py-4">
+                                    <h3 class="font-serif text-lg font-bold text-white leading-snug">KH. Abdullah Izzah, Lc., M.A.</h3>
+                                    <p class="text-gold-400 text-[10px] uppercase tracking-[0.2em] mt-1">Pendiri & Pengasuh Pondok Pesantren</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Badge melayang: tahun pengabdian -->
+                        <div class="absolute -top-8 -right-3 md:-right-8 bg-gradient-to-br from-gold-400 to-gold-500 text-slate-900 rounded-xl px-5 py-3 shadow-[0_10px_30px_rgba(217,119,6,0.4)] rotate-3 hover:rotate-0 transition duration-300">
+                            <p class="font-serif text-2xl font-bold leading-none">16+</p>
+                            <p class="text-[9px] font-bold uppercase tracking-widest mt-0.5">Tahun Mengabdi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KOLOM KANAN: PESAN SAMBUTAN -->
+                <div class="lg:col-span-7" data-aos="fade-left">
+                    <p class="text-gold-400 text-xs font-bold tracking-[0.3em] uppercase mb-3">Sambutan Pimpinan</p>
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-white mb-10 leading-snug">
+                        Pesantren adalah Rumah,<br class="hidden md:block">
+                        <span class="text-gold-gradient italic">Ilmu adalah Cahaya</span>
+                    </h2>
+
+                    <div class="relative pl-8 md:pl-12">
+                        <i class="fas fa-quote-left absolute left-0 top-0 text-4xl md:text-5xl text-gold-400/25"></i>
+                        
+                        <p class="text-gold-400 font-serif italic text-lg md:text-xl mb-5">Assalamu'alaikum Warahmatullahi Wabarakatuh,</p>
+                        
+                        <p class="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">
+                            Segala puji bagi Allah SWT yang telah mempertemukan kita dalam ikatan ukhuwah Islamiyah. Atas nama keluarga besar Pesantren Modern Al-Izzah, saya mengucapkan selamat datang di rumah kedua bagi putra-putri tercinta — tempat di mana iman, ilmu, dan akhlak tumbuh beriringan.
+                        </p>
+                        <p class="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">
+                            Sejak berdiri pada tahun 2010, kami memegang satu keyakinan: pendidikan sejati tidak hanya mengisi pikiran, tetapi juga menyalakan hati. Karena itu, setiap program di Al-Izzah — dari halaqah tahfidz sebelum subuh hingga laboratorium robotika — dirancang untuk melahirkan generasi yang hafal Al-Qur'an, unggul dalam sains, dan rendah hati dalam perbuatan.
+                        </p>
+                        <p class="text-gray-300 leading-relaxed mb-8 text-sm md:text-base">
+                            Kami mengundang Ayah dan Bunda untuk menjadi mitra dalam perjalanan mulia ini. Percayakan amanah itu kepada kami, dan insyaAllah kita akan menyaksikan putra-putri kita tumbuh menjadi pemimpin yang membawa cahaya bagi umat dan bangsa. <span class="text-gold-400 font-serif italic">Wassalamu'alaikum Warahmatullahi Wabarakatuh.</span>
+                        </p>
+
+                        <!-- Tiga nilai inti pimpinan -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+                            <div class="flex items-center gap-3 bg-slate-800/40 border border-white/5 hover:border-gold-400/30 rounded-xl px-4 py-3 transition">
+                                <i class="fas fa-heart text-gold-400"></i>
+                                <span class="text-sm text-gray-200 font-semibold">Iman yang Kokoh</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-800/40 border border-white/5 hover:border-gold-400/30 rounded-xl px-4 py-3 transition">
+                                <i class="fas fa-book-open text-gold-400"></i>
+                                <span class="text-sm text-gray-200 font-semibold">Ilmu yang Luas</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-800/40 border border-white/5 hover:border-gold-400/30 rounded-xl px-4 py-3 transition">
+                                <i class="fas fa-gem text-gold-400"></i>
+                                <span class="text-sm text-gray-200 font-semibold">Akhlak yang Mulia</span>
+                            </div>
+                        </div>
+
+                        <!-- Tanda tangan -->
+                        <div class="flex items-center gap-5">
+                            <span class="h-px w-14 bg-gold-400/60"></span>
+                            <div>
+                                <p class="font-signature text-4xl md:text-5xl text-gold-400 leading-none drop-shadow-[0_0_15px_rgba(217,119,6,0.35)]">Abdullah Izzah</p>
+                                <p class="text-gray-400 text-[10px] md:text-xs uppercase tracking-[0.2em] mt-3">KH. Abdullah Izzah, Lc., M.A. — Pengasuh Pesantren</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -379,7 +475,7 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
-                <!-- FORMULIR + UPLOAD (tetap ada di halaman, diakses via tombol Daftar) -->
+                <!-- FORMULIR + UPLOAD -->
                 <div class="lg:col-span-3 bg-slate-800/50 border border-white/10 rounded-2xl p-8" data-aos="fade-up">
                     <div id="spmb-form" class="scroll-mt-28 flex items-center gap-4 mb-6">
                         <div class="w-12 h-12 rounded-xl bg-gold-400/10 border border-gold-400/30 flex items-center justify-center">
@@ -577,8 +673,8 @@
                     <h3 class="text-white font-bold mb-6">Navigasi</h3>
                     <ul class="space-y-3 text-sm text-gray-400">
                         <li><a href="#home" class="hover:text-gold-400 transition">Beranda</a></li>
-                        <li><a href="#profil-sekolah" class="hover:text-gold-400 transition">Profil Sekolah</a></li>
-                        <li><a href="#berita" class="hover:text-gold-400 transition">Kabar Berita</a></li>
+                        <li><a href="profil.html" class="hover:text-gold-400 transition">Profil Sekolah</a></li>
+                        <li><a href="berita.html" class="hover:text-gold-400 transition">Kabar Berita</a></li>
                         <li><a href="#spmb" class="hover:text-gold-400 transition">SPMB Online</a></li>
                     </ul>
                 </div>
