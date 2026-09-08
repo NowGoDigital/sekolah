@@ -38,6 +38,7 @@
     </script>
 
     <style>
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #064E3B; border-radius: 4px; }
@@ -60,9 +61,9 @@
         /* Efek Ken Burns: foto latar zoom perlahan = sinematik */
         @keyframes kenBurns {
             0%   { transform: scale(1) translateY(0); }
-            100% { transform: scale(1.12) translateY(-1.5%); }
+            100% { transform: scale(1.05) translateY(-1%); }
         }
-        .ken-burns { animation: kenBurns 25s ease-in-out infinite alternate; }
+        .ken-burns { animation: kenBurns 20s ease-in-out infinite alternate; }
     </style>
 </head>
 <body class="bg-slate-900 text-gray-100 font-sans antialiased overflow-x-hidden">
@@ -107,22 +108,23 @@
         </div>
     </nav>
 
-    <!-- ============ HERO SECTION (FOTO LATAR + FALLBACK CHAIN) ============ -->
+    <!-- ============ HERO SECTION (MENGGUNAKAN FILE LOKAL: pichero.jpg) ============ -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
         
-        <!-- LAYER 1: FOTO LATAR (dengan rantai cadangan otomatis) -->
+        <!-- LAYER 1: FOTO LATAR LOKAL -->
         <div class="absolute inset-0 z-0 bg-emerald-900">
-            <img id="heroBg"
-                 data-idx="0"
-                 src="https://loremflickr.com/1920/1080/mosque,indonesia?lock=7"
-                 onerror="cycleHero(this)"
+            <!-- 
+                PENTING: Pastikan file 'pichero.jpg' ada di folder yang sama dengan index.html.
+                Jika nama filenya berbeda (misal: Pichero.JPG), sesuaikan huruf besar/kecilnya.
+            -->
+            <img src="pichero.jpg" 
                  alt="Kampus Pesantren Modern Al-Izzah"
                  class="ken-burns w-full h-full object-cover object-center">
         </div>
 
-        <!-- LAYER 2: OVERLAY GRADIEN SINEMATIK -->
-        <div class="absolute inset-0 z-[1] bg-gradient-to-b from-slate-900/80 via-emerald-900/50 to-slate-900"></div>
-        <div class="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(15,23,42,0.55)_100%)]"></div>
+        <!-- LAYER 2: OVERLAY GRADIEN SINEMATIK (Agar teks terbaca jelas di atas foto apa pun) -->
+        <div class="absolute inset-0 z-[1] bg-gradient-to-b from-slate-900/85 via-emerald-900/60 to-slate-900/90"></div>
+        <div class="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(15,23,42,0.6)_100%)]"></div>
 
         <!-- LAYER 3: KONTEN -->
         <div class="container mx-auto px-6 relative z-10 text-center pt-32 pb-24">
@@ -256,7 +258,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[200px]">
                 <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl cursor-pointer bg-emerald-900/40 flex items-center justify-center" data-aos="zoom-in">
                     <i class="fas fa-mosque text-6xl text-white/10 absolute"></i>
-                    <img data-fb="https://loremflickr.com/1200/1200/masjid?lock=31" onerror="fallbackImg(this)" src="https://loremflickr.com/1200/1200/mosque?lock=11" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Masjid Agung">
+                    <img src="https://loremflickr.com/1200/1200/mosque?lock=11" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Masjid Agung">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex items-end p-8">
                         <div>
                             <h4 class="text-white font-serif text-2xl mb-1">Masjid Agung Al-Izzah</h4>
@@ -267,21 +269,21 @@
                 
                 <div class="relative group overflow-hidden rounded-xl cursor-pointer bg-emerald-900/40 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="100">
                     <i class="fas fa-flask text-4xl text-white/10 absolute"></i>
-                    <img data-fb="https://loremflickr.com/800/600/science?lock=32" onerror="fallbackImg(this)" src="https://loremflickr.com/800/600/laboratory?lock=12" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Laboratorium">
+                    <img src="https://loremflickr.com/800/600/laboratory?lock=12" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Laboratorium">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                     <div class="absolute bottom-4 left-4 z-10"><h4 class="text-white font-bold">Laboratorium Sains</h4></div>
                 </div>
 
                 <div class="relative group overflow-hidden rounded-xl cursor-pointer bg-emerald-900/40 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="200">
                     <i class="fas fa-book text-4xl text-white/10 absolute"></i>
-                    <img data-fb="https://loremflickr.com/800/600/books?lock=33" onerror="fallbackImg(this)" src="https://loremflickr.com/800/600/library?lock=13" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Perpustakaan">
+                    <img src="https://loremflickr.com/800/600/library?lock=13" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Perpustakaan">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                     <div class="absolute bottom-4 left-4 z-10"><h4 class="text-white font-bold">Digital Library</h4></div>
                 </div>
 
                 <div class="md:col-span-2 relative group overflow-hidden rounded-xl cursor-pointer bg-emerald-900/40 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="300">
                     <i class="fas fa-bed text-4xl text-white/10 absolute"></i>
-                    <img data-fb="https://loremflickr.com/1200/600/bedroom?lock=34" onerror="fallbackImg(this)" src="https://loremflickr.com/1200/600/dormitory?lock=14" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Asrama">
+                    <img src="https://loremflickr.com/1200/600/dormitory?lock=14" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Asrama">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex items-end p-8">
                         <div>
                             <h4 class="text-white font-serif text-2xl mb-1">Asrama Modern</h4>
@@ -306,7 +308,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white/5 backdrop-blur-md p-8 rounded-xl border border-white/10 hover:border-gold-400/30 transition duration-300" data-aos="fade-up">
                     <div class="flex items-center gap-4 mb-6">
-                        <img onerror="fallbackImg(this)" data-fb="https://i.pravatar.cc/100?u=zaki" src="https://randomuser.me/api/portraits/men/32.jpg" class="w-14 h-14 rounded-full border-2 border-gold-400 p-1" alt="Ahmad Zaki">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-14 h-14 rounded-full border-2 border-gold-400 p-1" alt="Ahmad Zaki">
                         <div>
                             <h4 class="text-white font-bold text-lg">Ahmad Zaki</h4>
                             <p class="text-gold-400 text-xs uppercase tracking-wide">Alumni — Mahasiswa Al-Azhar, Kairo</p>
@@ -317,7 +319,7 @@
 
                 <div class="bg-white/5 backdrop-blur-md p-8 rounded-xl border border-white/10 hover:border-gold-400/30 transition duration-300" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center gap-4 mb-6">
-                        <img onerror="fallbackImg(this)" data-fb="https://i.pravatar.cc/100?u=aminah" src="https://randomuser.me/api/portraits/women/44.jpg" class="w-14 h-14 rounded-full border-2 border-gold-400 p-1" alt="Siti Aminah">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-14 h-14 rounded-full border-2 border-gold-400 p-1" alt="Siti Aminah">
                         <div>
                             <h4 class="text-white font-bold text-lg">Siti Aminah</h4>
                             <p class="text-gold-400 text-xs uppercase tracking-wide">Alumni — Beasiswa IIUM Malaysia</p>
@@ -328,7 +330,7 @@
 
                 <div class="bg-white/5 backdrop-blur-md p-8 rounded-xl border border-white/10 hover:border-gold-400/30 transition duration-300" data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-center gap-4 mb-6">
-                        <img onerror="fallbackImg(this)" data-fb="https://i.pravatar.cc/100?u=budi" src="https://randomuser.me/api/portraits/men/85.jpg" class="w-14 h-14 rounded-full border-2 border-gold-400 p-1" alt="Budi Santoso">
+                        <img src="https://randomuser.me/api/portraits/men/85.jpg" class="w-14 h-14 rounded-full border-2 border-gold-400 p-1" alt="Budi Santoso">
                         <div>
                             <h4 class="text-white font-bold text-lg">Budi Santoso</h4>
                             <p class="text-gold-400 text-xs uppercase tracking-wide">Wali Santri Angkatan 2020</p>
@@ -425,36 +427,6 @@
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
             menu.classList.toggle('flex');
-        }
-
-        /* ====== SISTEM FALLBACK FOTO HERO ======
-           Jika satu sumber gagal dimuat, otomatis pindah ke sumber berikutnya.
-           Dijamin hero tidak akan pernah kosong. */
-        const HERO_SOURCES = [
-            'https://loremflickr.com/1920/1080/mosque,indonesia?lock=7',
-            'https://loremflickr.com/1920/1080/mosque?lock=21',
-            'https://loremflickr.com/1920/1080/muslim,prayer?lock=5',
-            'https://loremflickr.com/1600/900/quran?lock=9',
-            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop'
-        ];
-        function cycleHero(img) {
-            const i = parseInt(img.dataset.idx || '0', 10) + 1;
-            if (i < HERO_SOURCES.length) {
-                img.dataset.idx = i;
-                img.src = HERO_SOURCES[i];
-            } else {
-                img.style.display = 'none'; // gradien emerald tetap tampil elegan
-            }
-        }
-
-        /* Fallback umum untuk foto galeri & avatar */
-        function fallbackImg(img) {
-            if (img.dataset.fb && !img.dataset.fbUsed) {
-                img.dataset.fbUsed = '1';
-                img.src = img.dataset.fb;
-            } else {
-                img.style.opacity = '0'; // ikon placeholder di belakangnya muncul
-            }
         }
     </script>
 </body>
