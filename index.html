@@ -25,20 +25,30 @@
                 extend: {
                     colors: {
                         emerald: {
-                            900: '#064E3B', // Primary Dark
+                            900: '#064E3B', 
                             800: '#065F46',
                         },
                         gold: {
-                            400: '#D97706', // Accent Gold
+                            400: '#D97706', 
                             500: '#B45309',
+                            light: '#FCD34D'
                         },
                         slate: {
-                            900: '#0f172a', // Dark Background
+                            900: '#0f172a', 
                         }
                     },
                     fontFamily: {
                         serif: ['Cinzel', 'serif'],
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    animation: {
+                        'ken-burns': 'kenBurns 20s ease-out infinite alternate',
+                    },
+                    keyframes: {
+                        kenBurns: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.15)' },
+                        }
                     }
                 }
             }
@@ -61,110 +71,147 @@
             background: linear-gradient(to right, #D97706, #FCD34D, #D97706);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 4s linear infinite;
         }
 
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Hero Overlay Gradient yang lebih halus */
         .hero-overlay {
-            background: linear-gradient(to bottom, rgba(6, 78, 59, 0.3), rgba(15, 23, 42, 0.9));
+            background: radial-gradient(circle at center, rgba(6, 78, 59, 0.2) 0%, rgba(15, 23, 42, 0.95) 100%);
+        }
+        
+        /* Text Shadow for readability on complex backgrounds */
+        .text-shadow-lg {
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
 <body class="bg-slate-900 text-gray-100 font-sans antialiased overflow-x-hidden">
 
     <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6">
         <div class="container mx-auto px-6 flex justify-between items-center">
             <!-- Logo -->
             <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 bg-emerald-900 rounded-full flex items-center justify-center border border-gold-400 shadow-[0_0_15px_rgba(217,119,6,0.5)]">
-                    <i class="fas fa-mosque text-gold-400 text-lg"></i>
+                <div class="w-12 h-12 bg-emerald-900/80 rounded-full flex items-center justify-center border border-gold-400 shadow-[0_0_15px_rgba(217,119,6,0.3)] backdrop-blur-sm transition duration-300 group-hover:shadow-[0_0_25px_rgba(217,119,6,0.6)]">
+                    <i class="fas fa-mosque text-gold-400 text-xl"></i>
                 </div>
                 <div>
-                    <h1 class="font-serif text-xl font-bold text-white tracking-wider group-hover:text-gold-400 transition">AL-IZZAH</h1>
-                    <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400">International Boarding School</p>
+                    <h1 class="font-serif text-2xl font-bold text-white tracking-wider group-hover:text-gold-400 transition drop-shadow-md">AL-IZZAH</h1>
+                    <p class="text-[10px] uppercase tracking-[0.25em] text-gray-300 font-medium">International Boarding School</p>
                 </div>
             </a>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-8">
-                <a href="#home" class="text-sm font-medium hover:text-gold-400 transition">Beranda</a>
-                <a href="#about" class="text-sm font-medium hover:text-gold-400 transition">Profil</a>
-                <a href="#program" class="text-sm font-medium hover:text-gold-400 transition">Kurikulum</a>
-                <a href="#facilities" class="text-sm font-medium hover:text-gold-400 transition">Fasilitas</a>
-                <a href="#contact" class="text-sm font-medium hover:text-gold-400 transition">Kontak</a>
+                <a href="#home" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-gold-400 after:transition-all hover:after:w-full">Beranda</a>
+                <a href="#about" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-gold-400 after:transition-all hover:after:w-full">Profil</a>
+                <a href="#program" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-gold-400 after:transition-all hover:after:w-full">Kurikulum</a>
+                <a href="#facilities" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-gold-400 after:transition-all hover:after:w-full">Fasilitas</a>
             </div>
 
             <!-- CTA Button -->
             <div class="hidden md:block">
-                <a href="dashboard.html" class="px-6 py-2.5 bg-gradient-to-r from-emerald-900 to-emerald-800 border border-emerald-700 text-white text-sm font-semibold rounded-full hover:shadow-[0_0_20px_rgba(6,78,59,0.6)] transition transform hover:-translate-y-0.5">
-                    Portal Login
+                <a href="dashboard.html" class="px-6 py-2.5 bg-gradient-to-r from-emerald-900 to-emerald-800 border border-emerald-700/50 text-white text-sm font-semibold rounded-full hover:shadow-[0_0_20px_rgba(6,78,59,0.6)] transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                    <i class="fas fa-user-lock text-gold-400"></i> Portal Login
                 </a>
             </div>
 
             <!-- Mobile Menu Button -->
-            <button class="md:hidden text-white text-2xl" onclick="toggleMobileMenu()">
+            <button class="md:hidden text-white text-2xl drop-shadow-lg" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
         
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-slate-900 border-t border-gray-800 p-6 flex-col gap-4 shadow-2xl">
-            <a href="#home" class="block text-gray-300 hover:text-gold-400">Beranda</a>
-            <a href="#about" class="block text-gray-300 hover:text-gold-400">Profil</a>
-            <a href="#program" class="block text-gray-300 hover:text-gold-400">Kurikulum</a>
-            <a href="dashboard.html" class="block text-gold-400 font-bold">Portal Login</a>
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-slate-900/95 backdrop-blur-xl border-t border-white/10 p-6 flex-col gap-4 shadow-2xl">
+            <a href="#home" class="block text-gray-300 hover:text-gold-400 py-2">Beranda</a>
+            <a href="#about" class="block text-gray-300 hover:text-gold-400 py-2">Profil</a>
+            <a href="#program" class="block text-gray-300 hover:text-gold-400 py-2">Kurikulum</a>
+            <a href="dashboard.html" class="block text-gold-400 font-bold py-2 border-t border-white/10 mt-2">Portal Login</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
-        <!-- Background Image (Placeholder for Video/Cinematic Shot) -->
+    <!-- IMPROVED HERO SECTION -->
+    <section id="home" class="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Ken Burns Effect -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1542259681-dadcd731560b?q=80&w=2070&auto=format&fit=crop" alt="Pesantren Campus" class="w-full h-full object-cover opacity-60">
+            <!-- Menggunakan gambar arsitektur islami modern yang megah -->
+            <img src="https://images.unsplash.com/photo-1596401490264-b6801d0808b6?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Pesantren Modern Architecture" 
+                 class="w-full h-full object-cover animate-ken-burns opacity-90">
+            
+            <!-- Complex Gradient Overlay for Readability & Mood -->
+            <div class="absolute inset-0 bg-slate-900/40"></div>
             <div class="absolute inset-0 hero-overlay"></div>
+            <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-900 to-transparent"></div>
         </div>
 
         <div class="container mx-auto px-6 relative z-10 text-center pt-20">
-            <span class="inline-block py-1 px-3 border border-gold-400/50 rounded-full bg-black/30 backdrop-blur-sm text-gold-400 text-xs font-bold tracking-widest mb-6" data-aos="fade-down">
-                ESTABLISHED 2010
-            </span>
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8 shadow-lg" data-aos="fade-down" data-aos-duration="1000">
+                <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
+                <span class="text-gold-400 text-xs font-bold tracking-widest uppercase">Pendaftaran Tahun Ajaran 2026/2027 Dibuka</span>
+            </div>
             
-            <h1 class="font-serif text-5xl md:text-7xl font-bold text-white leading-tight mb-6" data-aos="fade-up" data-aos-delay="100">
+            <!-- Main Headline -->
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-6 text-shadow-lg" data-aos="fade-up" data-aos-delay="200">
                 Membangun Generasi <br>
-                <span class="text-gold-gradient">Hafidz & Global Leader</span>
+                <span class="text-gold-gradient italic pr-2">Hafidz & Global Leader</span>
             </h1>
             
-            <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light" data-aos="fade-up" data-aos-delay="200">
-                Integrasi kurikulum Cambridge, Tahfidzul Quran 30 Juz, dan Karakter Islami dalam ekosistem pendidikan berteknologi modern.
+            <!-- Subheadline -->
+            <p class="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed drop-shadow-md" data-aos="fade-up" data-aos-delay="400">
+                Integrasi kurikulum Cambridge, Tahfidzul Quran 30 Juz, dan Karakter Islami dalam ekosistem pendidikan berteknologi modern di lingkungan yang asri.
             </p>
 
-            <div class="flex flex-col md:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="300">
-                <a href="#register" class="px-8 py-4 bg-gold-400 hover:bg-gold-500 text-slate-900 font-bold rounded-lg shadow-lg hover:shadow-gold-400/20 transition transform hover:-translate-y-1">
-                    Daftar Santri Baru
+            <!-- Buttons -->
+            <div class="flex flex-col md:flex-row gap-5 justify-center items-center" data-aos="fade-up" data-aos-delay="600">
+                <a href="#register" class="group relative px-8 py-4 bg-gold-400 text-slate-900 font-bold rounded-lg shadow-[0_0_30px_rgba(217,119,6,0.4)] hover:shadow-[0_0_50px_rgba(217,119,6,0.6)] transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
+                    <span class="relative z-10 flex items-center gap-2">
+                        Daftar Santri Baru <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </a>
-                <a href="#tour" class="px-8 py-4 bg-transparent border border-white/30 hover:bg-white/10 text-white font-semibold rounded-lg backdrop-blur-md transition flex items-center justify-center gap-2">
-                    <i class="fas fa-play-circle"></i> Virtual Tour 360
+                
+                <a href="#tour" class="group px-8 py-4 bg-white/5 border border-white/20 hover:bg-white/10 hover:border-gold-400/50 text-white font-semibold rounded-lg backdrop-blur-md transition-all duration-300 flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-gold-400/20 flex items-center justify-center group-hover:bg-gold-400 group-hover:text-slate-900 transition-colors">
+                        <i class="fas fa-play text-xs"></i>
+                    </div>
+                    Virtual Tour 360
                 </a>
             </div>
 
-            <!-- Metrics -->
-            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-10" data-aos="fade-up" data-aos-delay="400">
-                <div>
-                    <h3 class="text-3xl font-serif font-bold text-white">1,200+</h3>
-                    <p class="text-sm text-gray-400 uppercase tracking-wide">Santri Aktif</p>
+            <!-- Metrics / Stats -->
+            <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 border-t border-white/10 pt-10 backdrop-blur-sm bg-black/20 rounded-2xl p-6 md:p-8" data-aos="fade-up" data-aos-delay="800">
+                <div class="text-center md:text-left">
+                    <h3 class="text-4xl font-serif font-bold text-white mb-1">1,200+</h3>
+                    <p class="text-xs text-gold-400 uppercase tracking-widest font-semibold">Santri Aktif</p>
                 </div>
-                <div>
-                    <h3 class="text-3xl font-serif font-bold text-gold-400">850+</h3>
-                    <p class="text-sm text-gray-400 uppercase tracking-wide">Alumni Hafidz</p>
+                <div class="text-center md:text-left">
+                    <h3 class="text-4xl font-serif font-bold text-white mb-1">850+</h3>
+                    <p class="text-xs text-gold-400 uppercase tracking-widest font-semibold">Alumni Hafidz</p>
                 </div>
-                <div>
-                    <h3 class="text-3xl font-serif font-bold text-white">50+</h3>
-                    <p class="text-sm text-gray-400 uppercase tracking-wide">Mitra Global</p>
+                <div class="text-center md:text-left">
+                    <h3 class="text-4xl font-serif font-bold text-white mb-1">50+</h3>
+                    <p class="text-xs text-gold-400 uppercase tracking-widest font-semibold">Mitra Global</p>
                 </div>
-                <div>
-                    <h3 class="text-3xl font-serif font-bold text-white">A</h3>
-                    <p class="text-sm text-gray-400 uppercase tracking-wide">Akreditasi</p>
+                <div class="text-center md:text-left">
+                    <h3 class="text-4xl font-serif font-bold text-white mb-1">A</h3>
+                    <p class="text-xs text-gold-400 uppercase tracking-widest font-semibold">Akreditasi Unggul</p>
                 </div>
             </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-white/50">
+            <i class="fas fa-chevron-down text-xl"></i>
         </div>
     </section>
 
@@ -173,13 +220,13 @@
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">Pilar Pendidikan Unggulan</h2>
-                <div class="w-24 h-1 bg-gold-400 mx-auto rounded-full"></div>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Card 1 -->
-                <div class="group bg-slate-800/50 p-8 rounded-2xl border border-white/5 hover:border-gold-400/50 transition duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="0">
-                    <div class="w-14 h-14 bg-emerald-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-400 transition duration-500">
+                <div class="group bg-slate-800/40 p-8 rounded-2xl border border-white/5 hover:border-gold-400/30 transition duration-500 hover:-translate-y-2 hover:bg-slate-800/60" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-14 h-14 bg-emerald-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-400 transition duration-500 shadow-lg">
                         <i class="fas fa-quran text-2xl text-gold-400 group-hover:text-emerald-900 transition"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3 font-serif">Tahfidz 30 Juz</h3>
@@ -187,8 +234,8 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="group bg-slate-800/50 p-8 rounded-2xl border border-white/5 hover:border-gold-400/50 transition duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 h-14 bg-emerald-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-400 transition duration-500">
+                <div class="group bg-slate-800/40 p-8 rounded-2xl border border-white/5 hover:border-gold-400/30 transition duration-500 hover:-translate-y-2 hover:bg-slate-800/60" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-emerald-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-400 transition duration-500 shadow-lg">
                         <i class="fas fa-globe text-2xl text-gold-400 group-hover:text-emerald-900 transition"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3 font-serif">Cambridge Curriculum</h3>
@@ -196,8 +243,8 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="group bg-slate-800/50 p-8 rounded-2xl border border-white/5 hover:border-gold-400/50 transition duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 bg-emerald-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-400 transition duration-500">
+                <div class="group bg-slate-800/40 p-8 rounded-2xl border border-white/5 hover:border-gold-400/30 transition duration-500 hover:-translate-y-2 hover:bg-slate-800/60" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-emerald-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-400 transition duration-500 shadow-lg">
                         <i class="fas fa-language text-2xl text-gold-400 group-hover:text-emerald-900 transition"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3 font-serif">Bilingual Area</h3>
@@ -205,8 +252,8 @@
                 </div>
 
                 <!-- Card 4 -->
-                <div class="group bg-slate-800/50 p-8 rounded-2xl border border-white/5 hover:border-gold-400/50 transition duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-14 h-14 bg-emerald-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-400 transition duration-500">
+                <div class="group bg-slate-800/40 p-8 rounded-2xl border border-white/5 hover:border-gold-400/30 transition duration-500 hover:-translate-y-2 hover:bg-slate-800/60" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-emerald-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-400 transition duration-500 shadow-lg">
                         <i class="fas fa-robot text-2xl text-gold-400 group-hover:text-emerald-900 transition"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3 font-serif">Digital & Robotik</h3>
@@ -224,8 +271,8 @@
                     <h2 class="font-serif text-3xl md:text-4xl font-bold text-white mb-2">Fasilitas Kelas Dunia</h2>
                     <p class="text-gray-400">Menunjang kenyamanan belajar dan ibadah santri.</p>
                 </div>
-                <a href="#" class="text-gold-400 hover:text-white transition mt-4 md:mt-0 flex items-center gap-2">
-                    Lihat Semua <i class="fas fa-arrow-right"></i>
+                <a href="#" class="text-gold-400 hover:text-white transition mt-4 md:mt-0 flex items-center gap-2 group">
+                    Lihat Semua <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i>
                 </a>
             </div>
 
@@ -233,10 +280,10 @@
                 <!-- Item 1 (Large) -->
                 <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl cursor-pointer" data-aos="zoom-in">
                     <img src="https://images.unsplash.com/photo-1564981797816-1043660bf987?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Masjid">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-100 transition duration-300 flex items-end p-8">
                         <div>
-                            <h4 class="text-white font-serif text-xl">Masjid Agung Al-Izzah</h4>
-                            <p class="text-gray-300 text-sm">Kapasitas 2000 Jamaah</p>
+                            <h4 class="text-white font-serif text-2xl mb-1">Masjid Agung Al-Izzah</h4>
+                            <p class="text-gray-300 text-sm font-light">Kapasitas 2000 Jamaah dengan arsitektur Timur Tengah</p>
                         </div>
                     </div>
                 </div>
@@ -262,10 +309,10 @@
                  <!-- Item 4 (Wide) -->
                  <div class="md:col-span-2 relative group overflow-hidden rounded-xl cursor-pointer" data-aos="zoom-in" data-aos-delay="300">
                     <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Asrama">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition duration-300 flex items-end p-8">
                         <div>
-                            <h4 class="text-white font-serif text-xl">Asrama Modern</h4>
-                            <p class="text-gray-300 text-sm">Full AC & Keamanan 24 Jam</p>
+                            <h4 class="text-white font-serif text-2xl mb-1">Asrama Modern</h4>
+                            <p class="text-gray-300 text-sm font-light">Full AC, Keamanan 24 Jam, dan Lingkungan Kondusif</p>
                         </div>
                     </div>
                 </div>
@@ -281,43 +328,44 @@
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-16">
                 <h2 class="font-serif text-3xl md:text-4xl font-bold text-white">Kisah Sukses Alumni</h2>
+                <p class="text-gold-400 mt-2">Jejak langkah para pemimpin masa depan</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Testi 1 -->
-                <div class="bg-white/5 backdrop-blur-md p-8 rounded-xl border border-white/10" data-aos="fade-up">
+                <div class="bg-white/5 backdrop-blur-md p-8 rounded-xl border border-white/10 hover:border-gold-400/30 transition duration-300" data-aos="fade-up">
                     <div class="flex items-center gap-4 mb-6">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-12 h-12 rounded-full border-2 border-gold-400" alt="User">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-14 h-14 rounded-full border-2 border-gold-400 p-1" alt="User">
                         <div>
-                            <h4 class="text-white font-bold">Ahmad Zaki</h4>
-                            <p class="text-gold-400 text-xs">Mahasiswa Al-Azhar, Kairo</p>
+                            <h4 class="text-white font-bold text-lg">Ahmad Zaki</h4>
+                            <p class="text-gold-400 text-xs uppercase tracking-wide">Mahasiswa Al-Azhar, Kairo</p>
                         </div>
                     </div>
-                    <p class="text-gray-300 italic">"Kurikulum pesantren yang seimbang antara agama dan sains membuat saya mudah beradaptasi saat kuliah di Mesir. Fondasi bahasa Arab yang kuat adalah kuncinya."</p>
+                    <p class="text-gray-300 italic leading-relaxed">"Kurikulum pesantren yang seimbang antara agama dan sains membuat saya mudah beradaptasi saat kuliah di Mesir. Fondasi bahasa Arab yang kuat adalah kuncinya."</p>
                 </div>
 
                 <!-- Testi 2 -->
-                <div class="bg-white/5 backdrop-blur-md p-8 rounded-xl border border-white/10" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white/5 backdrop-blur-md p-8 rounded-xl border border-white/10 hover:border-gold-400/30 transition duration-300" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center gap-4 mb-6">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-12 h-12 rounded-full border-2 border-gold-400" alt="User">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-14 h-14 rounded-full border-2 border-gold-400 p-1" alt="User">
                         <div>
-                            <h4 class="text-white font-bold">Siti Aminah</h4>
-                            <p class="text-gold-400 text-xs">Beasiswa IIUM Malaysia</p>
+                            <h4 class="text-white font-bold text-lg">Siti Aminah</h4>
+                            <p class="text-gold-400 text-xs uppercase tracking-wide">Beasiswa IIUM Malaysia</p>
                         </div>
                     </div>
-                    <p class="text-gray-300 italic">"Lingkungan yang kondusif untuk tahfidz dan dukungan penuh dari ustadzah membantu saya menyelesaikan hafalan 30 juz sebelum lulus SMA."</p>
+                    <p class="text-gray-300 italic leading-relaxed">"Lingkungan yang kondusif untuk tahfidz dan dukungan penuh dari ustadzah membantu saya menyelesaikan hafalan 30 juz sebelum lulus SMA."</p>
                 </div>
 
                 <!-- Testi 3 -->
-                <div class="bg-white/5 backdrop-blur-md p-8 rounded-xl border border-white/10" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white/5 backdrop-blur-md p-8 rounded-xl border border-white/10 hover:border-gold-400/30 transition duration-300" data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-center gap-4 mb-6">
-                        <img src="https://randomuser.me/api/portraits/men/85.jpg" class="w-12 h-12 rounded-full border-2 border-gold-400" alt="User">
+                        <img src="https://randomuser.me/api/portraits/men/85.jpg" class="w-14 h-14 rounded-full border-2 border-gold-400 p-1" alt="User">
                         <div>
-                            <h4 class="text-white font-bold">Budi Santoso</h4>
-                            <p class="text-gold-400 text-xs">Wali Santri Angkatan 2020</p>
+                            <h4 class="text-white font-bold text-lg">Budi Santoso</h4>
+                            <p class="text-gold-400 text-xs uppercase tracking-wide">Wali Santri Angkatan 2020</p>
                         </div>
                     </div>
-                    <p class="text-gray-300 italic">"Perubahan akhlak anak saya sangat signifikan sejak masuk Al-Izzah. Disiplin, mandiri, dan santun. Fasilitas asramanya juga sangat bersih dan nyaman."</p>
+                    <p class="text-gray-300 italic leading-relaxed">"Perubahan akhlak anak saya sangat signifikan sejak masuk Al-Izzah. Disiplin, mandiri, dan santun. Fasilitas asramanya juga sangat bersih dan nyaman."</p>
                 </div>
             </div>
         </div>
@@ -402,10 +450,10 @@
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navbar.classList.add('glass-nav', 'py-2');
-                navbar.classList.remove('py-4');
+                navbar.classList.remove('py-6');
             } else {
                 navbar.classList.remove('glass-nav', 'py-2');
-                navbar.classList.add('py-4');
+                navbar.classList.add('py-6');
             }
         });
 
