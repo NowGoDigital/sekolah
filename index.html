@@ -81,7 +81,7 @@
 </head>
 <body class="bg-slate-900 text-gray-100 font-sans antialiased overflow-x-hidden">
 
-    <!-- ============ NAVBAR DENGAN DROPDOWN ============ -->
+    <!-- ============ NAVBAR DENGAN DROPDOWN SPMB ONLINE ============ -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-5">
         <div class="container mx-auto px-6 flex justify-between items-center">
             <!-- Logo -->
@@ -139,6 +139,27 @@
                     </div>
                 </div>
 
+                <!-- SPMB ONLINE DROPDOWN (HIGHLIGHTED) -->
+                <div class="relative group">
+                    <button class="text-sm font-bold text-gold-400 hover:text-gold-light transition flex items-center gap-1 py-2">
+                        SPMB Online <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
+                    </button>
+                    <div class="dropdown-menu absolute top-full left-0 w-64 bg-slate-800/95 backdrop-blur-xl border border-gold-400/30 rounded-xl shadow-2xl overflow-hidden pt-2 pb-2">
+                        <a href="#info-spmb" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                            <i class="fas fa-info-circle w-5 text-gold-400/70 mr-2"></i> Halaman Informasi SPMB
+                        </a>
+                        <a href="#formulir" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                            <i class="fas fa-edit w-5 text-gold-400/70 mr-2"></i> Formulir Pendaftaran Online
+                        </a>
+                        <a href="#upload-dokumen" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                            <i class="fas fa-cloud-upload-alt w-5 text-gold-400/70 mr-2"></i> Upload Dokumen Persyaratan
+                        </a>
+                        <a href="#pengumuman" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                            <i class="fas fa-bullhorn w-5 text-gold-400/70 mr-2"></i> Pengumuman Hasil Seleksi
+                        </a>
+                    </div>
+                </div>
+
                 <a href="#kurikulum" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition">Kurikulum</a>
                 <a href="#testimoni" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition">Kontak</a>
             </div>
@@ -175,6 +196,15 @@
                 <a href="#berita" class="block text-sm text-gray-400 hover:text-white">Berita & Artikel</a>
                 <a href="#agenda" class="block text-sm text-gray-400 hover:text-white">Agenda & Kalender</a>
                 <a href="#prestasi" class="block text-sm text-gray-400 hover:text-white">Prestasi & Penghargaan</a>
+            </div>
+
+            <!-- Mobile SPMB Online Submenu (Highlighted) -->
+            <div class="border-l-2 border-gold-400 pl-4 space-y-3 bg-gold-400/5 rounded-lg p-3">
+                <p class="text-xs text-gold-400 uppercase tracking-widest font-bold mb-1">SPMB Online</p>
+                <a href="#info-spmb" class="block text-sm text-gray-300 hover:text-gold-400">Informasi SPMB</a>
+                <a href="#formulir" class="block text-sm text-gray-300 hover:text-gold-400">Formulir Pendaftaran</a>
+                <a href="#upload-dokumen" class="block text-sm text-gray-300 hover:text-gold-400">Upload Dokumen</a>
+                <a href="#pengumuman" class="block text-sm text-gray-300 hover:text-gold-400">Pengumuman Seleksi</a>
             </div>
 
             <a href="#kurikulum" class="block text-gray-300 hover:text-gold-400 py-2 font-medium">Kurikulum</a>
@@ -230,7 +260,7 @@
 
             <!-- Tombol CTA -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16" data-aos="fade-up" data-aos-delay="450">
-                <a href="dashboard.html" class="group relative px-8 py-4 bg-gold-400 text-slate-900 font-bold rounded-lg shadow-[0_10px_40px_rgba(217,119,6,0.35)] hover:shadow-[0_10px_50px_rgba(217,119,6,0.55)] transition-all duration-300 transform hover:-translate-y-1 overflow-hidden w-full sm:w-auto">
+                <a href="#formulir" class="group relative px-8 py-4 bg-gold-400 text-slate-900 font-bold rounded-lg shadow-[0_10px_40px_rgba(217,119,6,0.35)] hover:shadow-[0_10px_50px_rgba(217,119,6,0.55)] transition-all duration-300 transform hover:-translate-y-1 overflow-hidden w-full sm:w-auto">
                     <span class="relative z-10 flex items-center justify-center gap-2">
                         Daftar Santri Baru <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </span>
@@ -439,6 +469,7 @@
                         <li><a href="#home" class="hover:text-gold-400 transition">Beranda</a></li>
                         <li><a href="#profil-sekolah" class="hover:text-gold-400 transition">Profil Sekolah</a></li>
                         <li><a href="#berita" class="hover:text-gold-400 transition">Kabar Berita</a></li>
+                        <li><a href="#info-spmb" class="hover:text-gold-400 transition">SPMB Online</a></li>
                         <li><a href="dashboard.html" class="hover:text-gold-400 transition">Pendaftaran (PSB)</a></li>
                     </ul>
                 </div>
