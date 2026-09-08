@@ -1,293 +1,413 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | Nexus Academy</title>
+    <title>Nexus Academy | Shaping Future Leaders</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        nexus: {
+                            dark: '#0f172a',
+                            accent: '#3b82f6',
+                            glass: 'rgba(255, 255, 255, 0.05)',
+                        }
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-200 h-screen flex overflow-hidden">
+<body class="bg-slate-950 text-slate-200 antialiased selection:bg-blue-500 selection:text-white">
 
-    <!-- Sidebar -->
-    <aside class="w-64 bg-slate-900 border-r border-white/5 hidden md:flex flex-col">
-        <div class="h-20 flex items-center px-8 border-b border-white/5">
-            <span class="font-bold text-xl text-white">Nexus<span class="text-blue-400">Admin</span></span>
-        </div>
-        <nav class="flex-1 px-4 py-6 space-y-2">
-            <a href="#" class="flex items-center gap-3 px-4 py-3 bg-blue-600/10 text-blue-400 rounded-lg border border-blue-600/20">
-                <i class="fas fa-home w-5"></i> Ringkasan
-            </a>
-            <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-white/5 hover:text-white rounded-lg transition-colors">
-                <i class="fas fa-newspaper w-5"></i> Manajemen Konten
-            </a>
-            <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-white/5 hover:text-white rounded-lg transition-colors">
-                <i class="fas fa-users w-5"></i> Pendaftaran
-            </a>
-            <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-white/5 hover:text-white rounded-lg transition-colors">
-                <i class="fas fa-cog w-5"></i> Pengaturan
-            </a>
-        </nav>
-        <div class="p-4 border-t border-white/5">
-            <button onclick="logout()" class="flex items-center gap-3 px-4 py-2 text-red-400 hover:bg-red-500/10 rounded-lg w-full transition-colors">
-                <i class="fas fa-sign-out-alt"></i> Keluar
-            </button>
-        </div>
-    </aside>
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 glass-panel border-b border-white/5" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl">N</div>
+                    <span class="font-bold text-xl tracking-tight text-white">Nexus<span class="text-blue-400">Academy</span></span>
+                </div>
 
-    <!-- Main Content -->
-    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
-        <!-- Top Header -->
-        <header class="h-20 bg-slate-900/50 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-8">
-            <h2 class="text-xl font-semibold text-white">Dasbor Utama</h2>
-            <div class="flex items-center gap-4">
-                <div class="text-right hidden sm:block">
-                    <div class="text-sm font-medium text-white">Administrator</div>
-                    <div class="text-xs text-slate-500">Super Admin</div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-sm font-medium hover:text-blue-400 transition-colors">Beranda</a>
+                    <a href="#academics" class="text-sm font-medium hover:text-blue-400 transition-colors">Akademik</a>
+                    <a href="#news" class="text-sm font-medium hover:text-blue-400 transition-colors">Berita</a>
+                    <a href="#contact" class="text-sm font-medium hover:text-blue-400 transition-colors">Kontak</a>
                 </div>
-                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"></div>
-            </div>
-        </header>
 
-        <!-- Scrollable Content -->
-        <div class="flex-1 overflow-y-auto p-8">
-            
-            <!-- Stats Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="bg-slate-900 border border-white/5 p-6 rounded-xl">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-slate-500 text-sm">Total Pengunjung (Bulan Ini)</p>
-                            <h3 class="text-3xl font-bold text-white mt-2">12,450</h3>
-                        </div>
-                        <div class="p-2 bg-blue-500/10 rounded-lg text-blue-400"><i class="fas fa-chart-line"></i></div>
-                    </div>
-                    <div class="mt-4 text-xs text-green-400 flex items-center gap-1">
-                        <i class="fas fa-arrow-up"></i> 12% dari bulan lalu
-                    </div>
-                </div>
-                <div class="bg-slate-900 border border-white/5 p-6 rounded-xl">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-slate-500 text-sm">Pendaftaran Aktif</p>
-                            <h3 class="text-3xl font-bold text-white mt-2">843</h3>
-                        </div>
-                        <div class="p-2 bg-purple-500/10 rounded-lg text-purple-400"><i class="fas fa-user-graduate"></i></div>
-                    </div>
-                    <div class="mt-4 text-xs text-slate-500">Kuota tersisa: 157</div>
-                </div>
-                <div class="bg-slate-900 border border-white/5 p-6 rounded-xl">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-slate-500 text-sm">Pertanyaan Tertunda</p>
-                            <h3 class="text-3xl font-bold text-white mt-2">24</h3>
-                        </div>
-                        <div class="p-2 bg-orange-500/10 rounded-lg text-orange-400"><i class="fas fa-envelope"></i></div>
-                    </div>
-                    <div class="mt-4 text-xs text-orange-400 cursor-pointer hover:underline">Lihat semua pesan</div>
-                </div>
-            </div>
-
-            <!-- CMS Content Manager -->
-            <div class="bg-slate-900 border border-white/5 rounded-xl overflow-hidden">
-                <div class="p-6 border-b border-white/5 flex justify-between items-center">
-                    <h3 class="text-lg font-bold text-white">Manajemen Berita & Pengumuman</h3>
-                    <button onclick="openAddModal()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                        <i class="fas fa-plus mr-2"></i> Tambah Post
+                <!-- CTA & Mobile Toggle -->
+                <div class="flex items-center gap-4">
+                    <button onclick="openLoginModal()" class="hidden md:inline-flex items-center justify-center px-5 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm border-white/10">
+                        Portal Login
+                    </button>
+                    <button class="md:hidden text-white focus:outline-none" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm text-slate-400">
-                        <thead class="bg-slate-800/50 text-slate-200 uppercase text-xs">
-                            <tr>
-                                <th class="px-6 py-4">Judul</th>
-                                <th class="px-6 py-4">Kategori</th>
-                                <th class="px-6 py-4">Tanggal</th>
-                                <th class="px-6 py-4 text-right">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cms-table-body" class="divide-y divide-white/5">
-                            <!-- Data will be injected here by JS -->
-                        </tbody>
-                    </table>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5">Beranda</a>
+                <a href="#academics" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5">Akademik</a>
+                <a href="#news" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5">Berita</a>
+                <button onclick="openLoginModal()" class="w-full text-left block px-3 py-2 rounded-md text-base font-medium text-blue-400 hover:bg-white/5">Portal Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 bg-slate-950">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-slate-950 to-purple-900/20 animate-gradient-x"></div>
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+            <span class="inline-block py-1 px-3 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold tracking-wide uppercase mb-6">
+                Pendaftaran Tahun Ajaran 2026/2027 Dibuka
+            </span>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
+                Membentuk Pemimpin <br>
+                <span class="text-gradient">Masa Depan</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10">
+                Nexus Academy menggabungkan kurikulum berbasis AI, seni humaniora, dan kepemimpinan global untuk menciptakan generasi inovator berikutnya.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+                <a href="#academics" class="px-8 py-4 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all shadow-lg shadow-blue-600/20">
+                    Jelajahi Program
+                </a>
+                <a href="#" class="px-8 py-4 rounded-full bg-transparent border border-slate-600 hover:border-white text-white font-semibold transition-all flex items-center justify-center gap-2 group">
+                    <i class="fas fa-play-circle text-sm group-hover:text-blue-400 transition-colors"></i> Tur Kampus Virtual
+                </a>
+            </div>
+
+            <!-- Dynamic Metrics -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-8">
+                <div>
+                    <div class="text-3xl font-bold text-white counter" data-target="1200">0</div>
+                    <div class="text-sm text-slate-500 uppercase tracking-wider mt-1">Siswa Aktif</div>
                 </div>
-                <div id="empty-state" class="hidden p-8 text-center text-slate-500">
-                    Belum ada artikel berita.
+                <div>
+                    <div class="text-3xl font-bold text-white counter" data-target="85">0</div>
+                    <div class="text-sm text-slate-500 uppercase tracking-wider mt-1">Fakultas Ahli</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white counter" data-target="98">0</div>
+                    <div class="text-sm text-slate-500 uppercase tracking-wider mt-1">% Kelulusan</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white counter" data-target="45">0</div>
+                    <div class="text-sm text-slate-500 uppercase tracking-wider mt-1">Penghargaan</div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Add/Edit Modal -->
-    <div id="post-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center">
-        <div class="bg-slate-900 border border-white/10 rounded-xl w-full max-w-lg p-6 m-4 shadow-2xl">
-            <h3 class="text-xl font-bold text-white mb-4" id="modal-title">Tambah Artikel Baru</h3>
-            <form id="post-form" class="space-y-4">
-                <input type="hidden" id="post-id">
-                <div>
-                    <label class="block text-sm text-slate-400 mb-1">Judul Artikel</label>
-                    <input type="text" id="post-title" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-blue-500 outline-none">
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm text-slate-400 mb-1">Kategori</label>
-                        <select id="post-category" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-blue-500 outline-none">
-                            <option value="AKADEMIK">Akademik</option>
-                            <option value="SENI">Seni</option>
-                            <option value="ALUMNI">Alumni</option>
-                            <option value="UMUM">Umum</option>
-                        </select>
+    <!-- Academics Section -->
+    <section id="academics" class="py-24 bg-slate-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Jalur Akademik Unggulan</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Kurikulum yang dirancang untuk menantang batas potensial setiap siswa.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="group relative p-8 rounded-2xl bg-slate-800/50 border border-white/5 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-blue-500/10">
+                    <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-robot text-xl"></i>
                     </div>
-                    <div>
-                        <label class="block text-sm text-slate-400 mb-1">Tanggal</label>
-                        <input type="date" id="post-date" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-blue-500 outline-none">
+                    <h3 class="text-xl font-bold text-white mb-2">AI & Robotika</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Pemrograman tingkat lanjut, machine learning dasar, dan etika teknologi.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group relative p-8 rounded-2xl bg-slate-800/50 border border-white/5 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-purple-500/10">
+                    <div class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-flask text-xl"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-2">STEM Lanjutan</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Fokus pada bioteknologi, fisika terapan, dan penelitian ilmiah mandiri.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group relative p-8 rounded-2xl bg-slate-800/50 border border-white/5 hover:border-pink-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-pink-500/10">
+                    <div class="w-12 h-12 rounded-lg bg-pink-500/20 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-palette text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Seni & Desain</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Desain grafis, seni digital, dan kurasi budaya modern.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="group relative p-8 rounded-2xl bg-slate-800/50 border border-white/5 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-500/10">
+                    <div class="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-globe text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Kepemimpinan Global</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Diplomasi, ekonomi internasional, dan pengembangan karakter.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Updates (Masonry-ish) -->
+    <section id="news" class="py-24 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Kehidupan Kampus</h2>
+                    <p class="text-slate-400">Berita terbaru dan prestasi siswa.</p>
+                </div>
+                <a href="#" class="text-blue-400 hover:text-blue-300 text-sm font-medium hidden md:block">Lihat Semua Berita <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="news-container">
+                <!-- News Item 1 -->
+                <article class="rounded-2xl overflow-hidden bg-slate-900 border border-white/5 group cursor-pointer">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=600" alt="Robotics Lab" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">AKADEMIK</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-slate-500 text-xs mb-2">12 September 2026</div>
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Tim Robotika Nexus Juara Nasional</h3>
+                        <p class="text-slate-400 text-sm line-clamp-2">Siswa kelas 11 berhasil membawa pulang emas dalam kompetisi robotika tingkat nasional...</p>
+                    </div>
+                </article>
+
+                <!-- News Item 2 -->
+                <article class="rounded-2xl overflow-hidden bg-slate-900 border border-white/5 group cursor-pointer">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=600" alt="Art Exhibition" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded">SENI</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-slate-500 text-xs mb-2">10 September 2026</div>
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Pameran Seni Digital "Future Vision"</h3>
+                        <p class="text-slate-400 text-sm line-clamp-2">Karya siswa menggunakan AI generatif dipamerkan di galeri pusat kota minggu ini.</p>
+                    </div>
+                </article>
+
+                <!-- News Item 3 -->
+                <article class="rounded-2xl overflow-hidden bg-slate-900 border border-white/5 group cursor-pointer">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=600" alt="Graduation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-emerald-600 text-white text-xs font-bold px-2 py-1 rounded">ALUMNI</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-slate-500 text-xs mb-2">05 September 2026</div>
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Reuni Alumni Angkatan 2016</h3>
+                        <p class="text-slate-400 text-sm line-clamp-2">Bertemu kembali dengan para pemimpin industri yang merupakan lulusan terbaik kami.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-white/5 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">N</div>
+                        <span class="font-bold text-lg text-white">Nexus Academy</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Institusi pendidikan masa depan yang mengintegrasikan teknologi, kemanusiaan, dan inovasi.
+                    </p>
                 </div>
                 <div>
-                    <label class="block text-sm text-slate-400 mb-1">Ringkasan Konten</label>
-                    <textarea id="post-content" rows="3" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:border-blue-500 outline-none"></textarea>
+                    <h4 class="text-white font-semibold mb-4">Navigasi</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-blue-400">Tentang Kami</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Akademik</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Pendaftaran</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Karir</a></li>
+                    </ul>
                 </div>
-                <div class="flex justify-end gap-3 mt-6">
-                    <button type="button" onclick="closePostModal()" class="px-4 py-2 text-slate-400 hover:text-white transition-colors">Batal</button>
-                    <button type="submit" class="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium transition-colors">Simpan</button>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Kontak</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><i class="fas fa-map-marker-alt w-5"></i> Jl. Inovasi No. 88, Jakarta</li>
+                        <li><i class="fas fa-phone w-5"></i> +62 21 5555 8888</li>
+                        <li><i class="fas fa-envelope w-5"></i> info@nexusacademy.id</li>
+                    </ul>
                 </div>
-            </form>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Newsletter</h4>
+                    <form class="flex gap-2" onsubmit="event.preventDefault(); alert('Terima kasih telah berlangganan!');">
+                        <input type="email" placeholder="Email Anda" class="bg-slate-800 border border-slate-700 text-white text-sm rounded-lg px-3 py-2 w-full focus:outline-none focus:border-blue-500">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-2 rounded-lg transition-colors"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
+                <p>&copy; 2026 Nexus Academy. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="fixed inset-0 z-[60] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity" onclick="closeLoginModal()"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-2xl bg-slate-900 border border-white/10 text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md p-8">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-white" id="modal-title">Portal Admin</h3>
+                        <p class="text-slate-400 text-sm mt-2">Masuk untuk mengelola konten CMS</p>
+                    </div>
+                    <form id="login-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1">Username</label>
+                            <input type="text" id="username" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="admin">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1">Password</label>
+                            <input type="password" id="password" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="••••••••">
+                        </div>
+                        <div id="login-error" class="text-red-400 text-xs hidden">Username atau password salah.</div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 rounded-lg transition-colors mt-4">Masuk Dashboard</button>
+                    </form>
+                    <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // --- Auth Check ---
-        if (!sessionStorage.getItem('isLoggedIn')) {
-            window.location.href = 'index.html';
+        // --- Logic Interaktivitas ---
+
+        // 1. Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         }
 
-        function logout() {
-            sessionStorage.removeItem('isLoggedIn');
-            window.location.href = 'index.html';
+        // 2. Login Modal Logic
+        const modal = document.getElementById('login-modal');
+        const loginForm = document.getElementById('login-form');
+        const loginError = document.getElementById('login-error');
+
+        function openLoginModal() {
+            modal.classList.remove('hidden');
         }
 
-        // --- CMS Logic (LocalStorage) ---
-        const STORAGE_KEY = 'nexus_cms_data';
-        
-        // Initial Dummy Data if empty
-        const initialData = [
-            { id: 1, title: 'Tim Robotika Nexus Juara Nasional', category: 'AKADEMIK', date: '2026-09-12', content: 'Siswa kelas 11 berhasil...' },
-            { id: 2, title: 'Pameran Seni Digital', category: 'SENI', date: '2026-09-10', content: 'Karya siswa menggunakan AI...' }
-        ];
-
-        function getData() {
-            const data = localStorage.getItem(STORAGE_KEY);
-            return data ? JSON.parse(data) : initialData;
+        function closeLoginModal() {
+            modal.classList.add('hidden');
+            loginError.classList.add('hidden');
+            loginForm.reset();
         }
 
-        function saveData(data) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            renderTable();
-        }
-
-        function renderTable() {
-            const data = getData();
-            const tbody = document.getElementById('cms-table-body');
-            const emptyState = document.getElementById('empty-state');
-            
-            tbody.innerHTML = '';
-            
-            if (data.length === 0) {
-                emptyState.classList.remove('hidden');
-                return;
-            }
-            emptyState.classList.add('hidden');
-
-            data.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.className = 'hover:bg-white/5 transition-colors';
-                
-                // Color badge logic
-                let badgeColor = 'bg-slate-700 text-slate-300';
-                if(item.category === 'AKADEMIK') badgeColor = 'bg-blue-900/50 text-blue-400 border border-blue-500/20';
-                if(item.category === 'SENI') badgeColor = 'bg-purple-900/50 text-purple-400 border border-purple-500/20';
-
-                tr.innerHTML = `
-                    <td class="px-6 py-4 font-medium text-white">${item.title}</td>
-                    <td class="px-6 py-4"><span class="px-2 py-1 rounded text-xs ${badgeColor}">${item.category}</span></td>
-                    <td class="px-6 py-4">${item.date}</td>
-                    <td class="px-6 py-4 text-right space-x-3">
-                        <button onclick="editPost(${item.id})" class="text-blue-400 hover:text-blue-300"><i class="fas fa-edit"></i></button>
-                        <button onclick="deletePost(${item.id})" class="text-red-400 hover:text-red-300"><i class="fas fa-trash"></i></button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        // --- Modal & Form Handling ---
-        const postModal = document.getElementById('post-modal');
-        const postForm = document.getElementById('post-form');
-
-        function openAddModal() {
-            postForm.reset();
-            document.getElementById('post-id').value = '';
-            document.getElementById('modal-title').innerText = 'Tambah Artikel Baru';
-            postModal.classList.remove('hidden');
-        }
-
-        function closePostModal() {
-            postModal.classList.add('hidden');
-        }
-
-        function editPost(id) {
-            const data = getData();
-            const item = data.find(d => d.id === id);
-            if (item) {
-                document.getElementById('post-id').value = item.id;
-                document.getElementById('post-title').value = item.title;
-                document.getElementById('post-category').value = item.category;
-                document.getElementById('post-date').value = item.date;
-                document.getElementById('post-content').value = item.content;
-                document.getElementById('modal-title').innerText = 'Edit Artikel';
-                postModal.classList.remove('hidden');
-            }
-        }
-
-        function deletePost(id) {
-            if(confirm('Yakin ingin menghapus artikel ini?')) {
-                let data = getData();
-                data = data.filter(d => d.id !== id);
-                saveData(data);
-            }
-        }
-
-        postForm.addEventListener('submit', (e) => {
+        loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const id = document.getElementById('post-id').value;
-            const newPost = {
-                id: id ? parseInt(id) : Date.now(),
-                title: document.getElementById('post-title').value,
-                category: document.getElementById('post-category').value,
-                date: document.getElementById('post-date').value,
-                content: document.getElementById('post-content').value
-            };
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
 
-            let data = getData();
-            if (id) {
-                // Update
-                const index = data.findIndex(d => d.id == id);
-                if (index !== -1) data[index] = newPost;
+            // Mock Authentication
+            if (user === 'admin' && pass === 'admin2026') {
+                sessionStorage.setItem('isLoggedIn', 'true');
+                window.location.href = 'dashboard.html';
             } else {
-                // Create
-                data.unshift(newPost);
+                loginError.classList.remove('hidden');
             }
-            
-            saveData(data);
-            closePostModal();
         });
 
-        // Init
-        renderTable();
+        // 3. Dynamic Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        // Trigger animation when hero is in view
+        let counted = false;
+        window.addEventListener('scroll', () => {
+            if (!counted && window.scrollY > 100) {
+                animateCounters();
+                counted = true;
+            }
+        });
+        
+        // Initial trigger just in case
+        setTimeout(animateCounters, 1000);
 
     </script>
 </body>
