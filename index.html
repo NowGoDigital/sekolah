@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font khusus tanda tangan (hanya untuk section sambutan) -->
+    <!-- Font khusus tanda tangan (section sambutan) -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     
     <!-- AOS Animation -->
@@ -80,137 +80,185 @@
 
         /* Font tanda tangan pimpinan (section sambutan) */
         .font-signature { font-family: 'Great Vibes', cursive; }
+
+        /* ====== TOPBAR: efek kilau emas berjalan ====== */
+        #topbar::after {
+            content: '';
+            position: absolute; top: 0; bottom: 0; left: 0; width: 45%;
+            background: linear-gradient(100deg, transparent, rgba(252,211,77,0.14), transparent);
+            animation: topbarShine 5s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes topbarShine {
+            0%   { transform: translateX(-120%); }
+            100% { transform: translateX(320%); }
+        }
     </style>
 </head>
 <body class="bg-slate-900 text-gray-100 font-sans antialiased overflow-x-hidden">
 
-    <!-- ============ NAVBAR ============ -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-5">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <!-- Logo -->
-            <a href="#home" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 bg-emerald-900/80 rounded-full flex items-center justify-center border border-gold-400 shadow-[0_0_15px_rgba(217,119,6,0.3)] backdrop-blur-sm">
-                    <i class="fas fa-mosque text-gold-400 text-lg"></i>
-                </div>
-                <div>
-                    <h1 class="font-serif text-xl font-bold text-white tracking-wider group-hover:text-gold-400 transition">AL-IZZAH</h1>
-                    <p class="text-[9px] uppercase tracking-[0.25em] text-gray-300 font-medium">International Boarding School</p>
-                </div>
-            </a>
+    <!-- ============ HEADER FIX: TOPBAR + NAVBAR ============ -->
+    <header id="siteHeader" class="fixed top-0 w-full z-50">
 
-            <!-- Desktop Menu -->
-            <div class="hidden lg:flex items-center gap-5 xl:gap-7">
-                <a href="#home" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition">Beranda</a>
-                
-                <!-- DROPDOWN: PROFIL -->
-                <div class="relative group">
-                    <button class="text-sm font-medium text-gray-200 hover:text-gold-400 transition flex items-center gap-1 py-2">
-                        Profil <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
-                    </button>
-                    <div class="dropdown-menu absolute top-full left-0 w-64 bg-slate-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden py-2">
-                        <a href="profil.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-school w-5 text-gold-400/70 mr-2"></i> Profil Sekolah
-                            <span class="block text-[10px] text-gray-500 mt-0.5 pl-7">Visi, Misi & Sejarah</span>
-                        </a>
-                        <a href="struktur.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-sitemap w-5 text-gold-400/70 mr-2"></i> Struktur Organisasi
-                        </a>
-                        <a href="#facilities" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-building w-5 text-gold-400/70 mr-2"></i> Fasilitas & Infrastruktur
-                        </a>
-                        <a href="galeri.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-images w-5 text-gold-400/70 mr-2"></i> Galeri Foto & Video
-                        </a>
-                    </div>
-                </div>
-
-                <!-- DROPDOWN: KABAR BERITA -->
-                <div class="relative group">
-                    <button class="text-sm font-medium text-gray-200 hover:text-gold-400 transition flex items-center gap-1 py-2">
-                        Kabar Berita <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
-                    </button>
-                    <div class="dropdown-menu absolute top-full left-0 w-64 bg-slate-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden py-2">
-                        <a href="berita.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-newspaper w-5 text-gold-400/70 mr-2"></i> Berita & Artikel
-                        </a>
-                        <a href="agenda.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-calendar-alt w-5 text-gold-400/70 mr-2"></i> Agenda & Kalender
-                        </a>
-                        <a href="prestasi.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-trophy w-5 text-gold-400/70 mr-2"></i> Prestasi & Penghargaan
-                        </a>
-                    </div>
-                </div>
-
-                <!-- DROPDOWN: SPMB ONLINE -->
-                <div class="relative group">
-                    <button class="text-sm font-medium text-gold-400 hover:text-gold-light transition flex items-center gap-1.5 py-2">
-                        <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-gold-400"></span>
-                        </span>
-                        SPMB Online <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
-                    </button>
-                    <div class="dropdown-menu absolute top-full left-0 w-72 bg-slate-800/95 backdrop-blur-xl border border-gold-400/30 rounded-xl shadow-2xl overflow-hidden py-2">
-                        <a href="#spmb-info" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-circle-info w-5 text-gold-400/70 mr-2"></i> Halaman Informasi SPMB
-                            <span class="block text-[10px] text-gray-500 mt-0.5 pl-7">Syarat, jalur & jadwal pendaftaran</span>
-                        </a>
-                        <a href="#spmb-result" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-bullhorn w-5 text-gold-400/70 mr-2"></i> Pengumuman Hasil Seleksi
-                            <span class="block text-[10px] text-gray-500 mt-0.5 pl-7">Cek status kelulusan online</span>
-                        </a>
-                    </div>
-                </div>
-
-                <a href="#kurikulum" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition">Kurikulum</a>
-                <a href="#testimoni" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition">Kontak</a>
-            </div>
-
-            <!-- CTA Button -->
-            <div class="hidden lg:block">
-                <a href="dashboard.html" class="px-6 py-2.5 bg-gradient-to-r from-emerald-900 to-emerald-800 border border-emerald-700/50 text-white text-sm font-semibold rounded-full hover:shadow-[0_0_20px_rgba(6,78,59,0.6)] transition transform hover:-translate-y-0.5 flex items-center gap-2">
-                    <i class="fas fa-user-lock text-gold-400"></i> Portal PSB & Login
+        <!-- ============ TOPBAR PENAWARAN TERBATAS (BARU) ============ -->
+        <div id="topbar" class="relative overflow-hidden max-h-20 opacity-100 border-b border-gold-400/20 bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 transition-all duration-500">
+            <div class="container mx-auto px-6 py-2.5 pr-12 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center relative z-10">
+                <!-- Badge penawaran -->
+                <span class="inline-flex items-center gap-2 bg-gold-400 text-slate-900 text-[10px] font-bold uppercase tracking-[0.18em] px-3 py-1 rounded-full shrink-0 shadow-[0_0_15px_rgba(217,119,6,0.4)]">
+                    <span class="relative flex h-1.5 w-1.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-slate-900 opacity-60"></span>
+                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-slate-900"></span>
+                    </span>
+                    Penawaran Terbatas
+                </span>
+                <!-- Pesan: versi mobile & desktop -->
+                <p class="text-[11px] md:text-xs text-emerald-50/90 font-medium tracking-wide leading-snug">
+                    <span class="sm:hidden">Desain website ini tersisa <span class="text-gold-light font-bold">1 slot</span> saja!</span>
+                    <span class="hidden sm:inline">Desain website premium ini dibuka hanya untuk <span class="text-gold-light font-bold">1 slot</span> — amankan sebelum diambil klien lain!</span>
+                </p>
+                <!-- Indikator slot -->
+                <span class="hidden lg:inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold-light border border-gold-400/40 bg-black/20 rounded-full px-3 py-1 shrink-0">
+                    <i class="fas fa-hourglass-half text-[9px]"></i> Slot: 1 / 1
+                </span>
+                <!-- CTA -->
+                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20mengklaim%201%20slot%20desain%20website%20ini" target="_blank" class="inline-flex items-center gap-2 border border-gold-400/60 text-gold-light hover:bg-gold-400 hover:text-slate-900 text-[10px] font-bold uppercase tracking-[0.18em] px-4 py-1.5 rounded-full transition shrink-0">
+                    Klaim Sekarang <i class="fas fa-arrow-right text-[9px]"></i>
                 </a>
             </div>
-
-            <!-- Mobile Menu Button -->
-            <button class="lg:hidden text-white text-2xl" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
+            <!-- Tombol tutup -->
+            <button onclick="dismissTopbar()" aria-label="Tutup penawaran" class="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full text-emerald-100/60 hover:text-white hover:bg-white/10 transition flex items-center justify-center">
+                <i class="fas fa-xmark text-xs"></i>
             </button>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-slate-900/95 backdrop-blur-xl border-t border-white/10 p-6 flex-col gap-4 shadow-2xl max-h-[85vh] overflow-y-auto">
-            <a href="#home" class="block text-gray-300 hover:text-gold-400 py-2 font-medium">Beranda</a>
+
+        <!-- ============ NAVBAR ============ -->
+        <nav id="navbar" class="w-full transition-all duration-300 py-5">
+            <div class="container mx-auto px-6 flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 bg-emerald-900/80 rounded-full flex items-center justify-center border border-gold-400 shadow-[0_0_15px_rgba(217,119,6,0.3)] backdrop-blur-sm">
+                        <i class="fas fa-mosque text-gold-400 text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-serif text-xl font-bold text-white tracking-wider group-hover:text-gold-400 transition">AL-IZZAH</h1>
+                        <p class="text-[9px] uppercase tracking-[0.25em] text-gray-300 font-medium">International Boarding School</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center gap-5 xl:gap-7">
+                    <a href="#home" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition">Beranda</a>
+                    
+                    <!-- DROPDOWN: PROFIL -->
+                    <div class="relative group">
+                        <button class="text-sm font-medium text-gray-200 hover:text-gold-400 transition flex items-center gap-1 py-2">
+                            Profil <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
+                        </button>
+                        <div class="dropdown-menu absolute top-full left-0 w-64 bg-slate-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden py-2">
+                            <a href="profil.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                                <i class="fas fa-school w-5 text-gold-400/70 mr-2"></i> Profil Sekolah
+                                <span class="block text-[10px] text-gray-500 mt-0.5 pl-7">Visi, Misi & Sejarah</span>
+                            </a>
+                            <a href="struktur.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                                <i class="fas fa-sitemap w-5 text-gold-400/70 mr-2"></i> Struktur Organisasi
+                            </a>
+                            <a href="#facilities" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                                <i class="fas fa-building w-5 text-gold-400/70 mr-2"></i> Fasilitas & Infrastruktur
+                            </a>
+                            <a href="galeri.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                                <i class="fas fa-images w-5 text-gold-400/70 mr-2"></i> Galeri Foto & Video
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- DROPDOWN: KABAR BERITA -->
+                    <div class="relative group">
+                        <button class="text-sm font-medium text-gray-200 hover:text-gold-400 transition flex items-center gap-1 py-2">
+                            Kabar Berita <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
+                        </button>
+                        <div class="dropdown-menu absolute top-full left-0 w-64 bg-slate-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden py-2">
+                            <a href="berita.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                                <i class="fas fa-newspaper w-5 text-gold-400/70 mr-2"></i> Berita & Artikel
+                            </a>
+                            <a href="agenda.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                                <i class="fas fa-calendar-alt w-5 text-gold-400/70 mr-2"></i> Agenda & Kalender
+                            </a>
+                            <a href="prestasi.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                                <i class="fas fa-trophy w-5 text-gold-400/70 mr-2"></i> Prestasi & Penghargaan
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- DROPDOWN: SPMB ONLINE -->
+                    <div class="relative group">
+                        <button class="text-sm font-medium text-gold-400 hover:text-gold-light transition flex items-center gap-1.5 py-2">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-gold-400"></span>
+                            </span>
+                            SPMB Online <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
+                        </button>
+                        <div class="dropdown-menu absolute top-full left-0 w-72 bg-slate-800/95 backdrop-blur-xl border border-gold-400/30 rounded-xl shadow-2xl overflow-hidden py-2">
+                            <a href="#spmb-info" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                                <i class="fas fa-circle-info w-5 text-gold-400/70 mr-2"></i> Halaman Informasi SPMB
+                                <span class="block text-[10px] text-gray-500 mt-0.5 pl-7">Syarat, jalur & jadwal pendaftaran</span>
+                            </a>
+                            <a href="#spmb-result" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
+                                <i class="fas fa-bullhorn w-5 text-gold-400/70 mr-2"></i> Pengumuman Hasil Seleksi
+                                <span class="block text-[10px] text-gray-500 mt-0.5 pl-7">Cek status kelulusan online</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="#kurikulum" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition">Kurikulum</a>
+                    <a href="#testimoni" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition">Kontak</a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="hidden lg:block">
+                    <a href="dashboard.html" class="px-6 py-2.5 bg-gradient-to-r from-emerald-900 to-emerald-800 border border-emerald-700/50 text-white text-sm font-semibold rounded-full hover:shadow-[0_0_20px_rgba(6,78,59,0.6)] transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                        <i class="fas fa-user-lock text-gold-400"></i> Portal PSB & Login
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden text-white text-2xl" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
             
-            <div class="border-l-2 border-emerald-800 pl-4 space-y-3">
-                <p class="text-xs text-gold-400 uppercase tracking-widest font-bold mb-1">Profil</p>
-                <a href="profil.html" class="block text-sm text-gray-400 hover:text-white">Profil Sekolah (Visi, Misi, Sejarah)</a>
-                <a href="struktur.html" class="block text-sm text-gray-400 hover:text-white">Struktur Organisasi</a>
-                <a href="#facilities" class="block text-sm text-gray-400 hover:text-white">Fasilitas & Infrastruktur</a>
-                <a href="galeri.html" class="block text-sm text-gray-400 hover:text-white">Galeri Foto & Video</a>
-            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-slate-900/95 backdrop-blur-xl border-t border-white/10 p-6 flex-col gap-4 shadow-2xl max-h-[85vh] overflow-y-auto">
+                <a href="#home" class="block text-gray-300 hover:text-gold-400 py-2 font-medium">Beranda</a>
+                
+                <div class="border-l-2 border-emerald-800 pl-4 space-y-3">
+                    <p class="text-xs text-gold-400 uppercase tracking-widest font-bold mb-1">Profil</p>
+                    <a href="profil.html" class="block text-sm text-gray-400 hover:text-white">Profil Sekolah (Visi, Misi, Sejarah)</a>
+                    <a href="struktur.html" class="block text-sm text-gray-400 hover:text-white">Struktur Organisasi</a>
+                    <a href="#facilities" class="block text-sm text-gray-400 hover:text-white">Fasilitas & Infrastruktur</a>
+                    <a href="galeri.html" class="block text-sm text-gray-400 hover:text-white">Galeri Foto & Video</a>
+                </div>
 
-            <div class="border-l-2 border-emerald-800 pl-4 space-y-3">
-                <p class="text-xs text-gold-400 uppercase tracking-widest font-bold mb-1">Kabar Berita</p>
-                <a href="berita.html" class="block text-sm text-gray-400 hover:text-white">Berita & Artikel Sekolah</a>
-                <a href="agenda.html" class="block text-sm text-gray-400 hover:text-white">Agenda & Kalender Kegiatan</a>
-                <a href="prestasi.html" class="block text-sm text-gray-400 hover:text-white">Prestasi & Penghargaan</a>
-            </div>
+                <div class="border-l-2 border-emerald-800 pl-4 space-y-3">
+                    <p class="text-xs text-gold-400 uppercase tracking-widest font-bold mb-1">Kabar Berita</p>
+                    <a href="berita.html" class="block text-sm text-gray-400 hover:text-white">Berita & Artikel Sekolah</a>
+                    <a href="agenda.html" class="block text-sm text-gray-400 hover:text-white">Agenda & Kalender Kegiatan</a>
+                    <a href="prestasi.html" class="block text-sm text-gray-400 hover:text-white">Prestasi & Penghargaan</a>
+                </div>
 
-            <div class="border-l-2 border-gold-400 pl-4 space-y-3 bg-gold-400/5 rounded-r-lg py-3 pr-3">
-                <p class="text-xs text-gold-400 uppercase tracking-widest font-bold mb-1"><i class="fas fa-bolt mr-1"></i> SPMB Online</p>
-                <a href="#spmb-info" class="block text-sm text-gray-300 hover:text-gold-400">Halaman Informasi SPMB</a>
-                <a href="#spmb-result" class="block text-sm text-gray-300 hover:text-gold-400">Pengumuman Hasil Seleksi</a>
-            </div>
+                <div class="border-l-2 border-gold-400 pl-4 space-y-3 bg-gold-400/5 rounded-r-lg py-3 pr-3">
+                    <p class="text-xs text-gold-400 uppercase tracking-widest font-bold mb-1"><i class="fas fa-bolt mr-1"></i> SPMB Online</p>
+                    <a href="#spmb-info" class="block text-sm text-gray-300 hover:text-gold-400">Halaman Informasi SPMB</a>
+                    <a href="#spmb-result" class="block text-sm text-gray-300 hover:text-gold-400">Pengumuman Hasil Seleksi</a>
+                </div>
 
-            <a href="#kurikulum" class="block text-gray-300 hover:text-gold-400 py-2 font-medium">Kurikulum</a>
-            <a href="#testimoni" class="block text-gray-300 hover:text-gold-400 py-2 font-medium">Kontak</a>
-            
-            <a href="dashboard.html" class="block text-center bg-emerald-900 text-white py-3 rounded-lg font-bold mt-2 border border-emerald-700">Portal PSB & Login</a>
-        </div>
-    </nav>
+                <a href="#kurikulum" class="block text-gray-300 hover:text-gold-400 py-2 font-medium">Kurikulum</a>
+                <a href="#testimoni" class="block text-gray-300 hover:text-gold-400 py-2 font-medium">Kontak</a>
+                
+                <a href="dashboard.html" class="block text-center bg-emerald-900 text-white py-3 rounded-lg font-bold mt-2 border border-emerald-700">Portal PSB & Login</a>
+            </div>
+        </nav>
+    </header>
 
     <!-- ============ HERO SECTION (FILE LOKAL: pichero.jpg) ============ -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -220,7 +268,7 @@
         <div class="absolute inset-0 z-[1] bg-gradient-to-b from-slate-900/85 via-emerald-900/60 to-slate-900/90"></div>
         <div class="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(15,23,42,0.6)_100%)]"></div>
 
-        <div class="container mx-auto px-6 relative z-10 text-center pt-32 pb-24">
+        <div class="container mx-auto px-6 relative z-10 text-center pt-36 pb-24">
             <div class="inline-flex items-center gap-3 py-2 px-5 rounded-full bg-white/10 border border-gold-400/40 backdrop-blur-md mb-8" data-aos="fade-down">
                 <span class="relative flex h-2.5 w-2.5">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
@@ -284,9 +332,8 @@
         </div>
     </section>
 
-    <!-- ============ SAMBUTAN PIMPINAN PONDOK PESANTREN (BARU) ============ -->
+    <!-- ============ SAMBUTAN PIMPINAN PONDOK PESANTREN ============ -->
     <section id="sambutan" class="py-24 bg-slate-950 relative overflow-hidden">
-        <!-- Ornamen cahaya & pola islami halus -->
         <div class="absolute -top-24 -left-24 w-96 h-96 bg-emerald-900/30 rounded-full blur-3xl"></div>
         <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-gold-400/5 rounded-full blur-3xl"></div>
         <div class="absolute inset-0 opacity-[0.04]" style="background-image: radial-gradient(#D97706 1px, transparent 1px); background-size: 28px 28px;"></div>
@@ -297,16 +344,13 @@
                 <!-- KOLOM KIRI: FOTO PIMPINAN -->
                 <div class="lg:col-span-5" data-aos="fade-right">
                     <div class="relative max-w-md mx-auto lg:mx-0 mt-8 lg:mt-0">
-                        <!-- Bingkai emas offset (khas editorial premium) -->
                         <div class="absolute -top-5 -left-5 w-full h-full border-2 border-gold-400/40 rounded-2xl"></div>
                         <div class="absolute -bottom-5 -right-5 w-full h-full border border-emerald-700/60 rounded-2xl"></div>
                         
-                        <!-- Foto -->
                         <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                             <img src="https://randomuser.me/api/portraits/men/61.jpg" alt="KH. Abdullah Izzah, Lc., M.A." class="w-full h-[420px] md:h-[480px] object-cover object-top">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                             
-                            <!-- Papan nama di bawah foto -->
                             <div class="absolute bottom-0 left-0 right-0 p-5">
                                 <div class="bg-slate-900/80 backdrop-blur-md border border-gold-400/30 rounded-xl px-5 py-4">
                                     <h3 class="font-serif text-lg font-bold text-white leading-snug">KH. Abdullah Izzah, Lc., M.A.</h3>
@@ -315,7 +359,6 @@
                             </div>
                         </div>
 
-                        <!-- Badge melayang: tahun pengabdian -->
                         <div class="absolute -top-8 -right-3 md:-right-8 bg-gradient-to-br from-gold-400 to-gold-500 text-slate-900 rounded-xl px-5 py-3 shadow-[0_10px_30px_rgba(217,119,6,0.4)] rotate-3 hover:rotate-0 transition duration-300">
                             <p class="font-serif text-2xl font-bold leading-none">16+</p>
                             <p class="text-[9px] font-bold uppercase tracking-widest mt-0.5">Tahun Mengabdi</p>
@@ -346,7 +389,6 @@
                             Kami mengundang Ayah dan Bunda untuk menjadi mitra dalam perjalanan mulia ini. Percayakan amanah itu kepada kami, dan insyaAllah kita akan menyaksikan putra-putri kita tumbuh menjadi pemimpin yang membawa cahaya bagi umat dan bangsa. <span class="text-gold-400 font-serif italic">Wassalamu'alaikum Warahmatullahi Wabarakatuh.</span>
                         </p>
 
-                        <!-- Tiga nilai inti pimpinan -->
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
                             <div class="flex items-center gap-3 bg-slate-800/40 border border-white/5 hover:border-gold-400/30 rounded-xl px-4 py-3 transition">
                                 <i class="fas fa-heart text-gold-400"></i>
@@ -362,7 +404,6 @@
                             </div>
                         </div>
 
-                        <!-- Tanda tangan -->
                         <div class="flex items-center gap-5">
                             <span class="h-px w-14 bg-gold-400/60"></span>
                             <div>
@@ -430,7 +471,6 @@
                 <p class="text-gray-400 max-w-2xl mx-auto mt-4 text-sm md:text-base" data-aos="fade-up">Seluruh proses pendaftaran dilakukan secara daring — mulai dari pengisian formulir hingga pengumuman hasil seleksi.</p>
             </div>
 
-            <!-- SUB-SECTION 1: INFORMASI SPMB -->
             <div id="spmb-info" class="scroll-mt-28 grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
                 <div class="bg-slate-800/50 border border-white/10 rounded-2xl p-8 hover:border-gold-400/30 transition" data-aos="fade-right">
                     <div class="flex items-center gap-4 mb-6">
@@ -475,7 +515,6 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
-                <!-- FORMULIR + UPLOAD -->
                 <div class="lg:col-span-3 bg-slate-800/50 border border-white/10 rounded-2xl p-8" data-aos="fade-up">
                     <div id="spmb-form" class="scroll-mt-28 flex items-center gap-4 mb-6">
                         <div class="w-12 h-12 rounded-xl bg-gold-400/10 border border-gold-400/30 flex items-center justify-center">
@@ -528,7 +567,6 @@
                     </form>
                 </div>
 
-                <!-- PENGUMUMAN HASIL -->
                 <div class="lg:col-span-2 space-y-8">
                     <div id="spmb-result" class="scroll-mt-28 bg-slate-800/50 border border-gold-400/20 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="100">
                         <div class="flex items-center gap-4 mb-6">
@@ -716,13 +754,25 @@
         AOS.init({ duration: 800, once: true, offset: 80 });
 
         const navbar = document.getElementById('navbar');
+        const topbar = document.getElementById('topbar');
+        let topbarDismissed = false;
+
+        /* ====== TOPBAR: tutup permanen lewat tombol X ====== */
+        function dismissTopbar() {
+            topbarDismissed = true;
+            topbar.classList.add('max-h-0', 'opacity-0', 'border-b-0');
+        }
+
+        /* ====== Scroll: navbar glass + topbar melipat otomatis ====== */
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navbar.classList.add('glass-nav', 'py-2');
                 navbar.classList.remove('py-5');
+                if (!topbarDismissed) topbar.classList.add('max-h-0', 'opacity-0', 'border-b-0');
             } else {
                 navbar.classList.remove('glass-nav', 'py-2');
                 navbar.classList.add('py-5');
+                if (!topbarDismissed) topbar.classList.remove('max-h-0', 'opacity-0', 'border-b-0');
             }
         });
 
