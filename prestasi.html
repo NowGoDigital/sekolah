@@ -162,11 +162,10 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <!-- Featured 1 -->
                 <div class="group relative bg-slate-800/50 border border-gold-400/20 rounded-3xl overflow-hidden hover:border-gold-400/50 transition duration-500" data-aos="fade-right">
                     <div class="relative h-64 bg-emerald-900/40 flex items-center justify-center overflow-hidden">
                         <i class="fas fa-trophy text-6xl text-white/10 absolute"></i>
-                        <img onerror="imgFallback(this,'p1')" src="prestasi1.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Olimpiade Jepang">
+                        <img onerror="imgFallback(this,'p1')" src="https://loremflickr.com/900/600/tokyo,olympiad?lock=81" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Olimpiade Jepang">
                         <div class="absolute top-4 left-4 bg-gold-400 text-slate-900 text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg">Juara 1 Dunia</div>
                     </div>
                     <div class="p-8">
@@ -181,11 +180,10 @@
                     </div>
                 </div>
 
-                <!-- Featured 2 -->
                 <div class="group relative bg-slate-800/50 border border-gold-400/20 rounded-3xl overflow-hidden hover:border-gold-400/50 transition duration-500" data-aos="fade-left">
                     <div class="relative h-64 bg-emerald-900/40 flex items-center justify-center overflow-hidden">
                         <i class="fas fa-quran text-6xl text-white/10 absolute"></i>
-                        <img onerror="imgFallback(this,'p2')" src="prestasi2.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="MHQ Turki">
+                        <img onerror="imgFallback(this,'p2')" src="https://loremflickr.com/900/600/quran,competition?lock=82" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="MHQ Turki">
                         <div class="absolute top-4 left-4 bg-emerald-600 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg">Hafidz Terbaik</div>
                     </div>
                     <div class="p-8">
@@ -211,8 +209,10 @@
                 <div class="w-24 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto rounded-full"></div>
             </div>
 
+            <!-- MOUNT PRESTASI DARI CMS DASHBOARD (INTEGRASI) -->
+            <div id="cmsPrestasiMount" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"></div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Card 1 -->
                 <div class="group bg-slate-800/40 border border-white/5 hover:border-gold-400/30 rounded-2xl p-6 transition hover:-translate-y-1" data-aos="fade-up">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-yellow-900/30 border border-yellow-600/30 flex items-center justify-center shrink-0">
@@ -225,7 +225,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Card 2 -->
                 <div class="group bg-slate-800/40 border border-white/5 hover:border-gold-400/30 rounded-2xl p-6 transition hover:-translate-y-1" data-aos="fade-up" data-aos-delay="50">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-yellow-900/30 border border-yellow-600/30 flex items-center justify-center shrink-0">
@@ -238,7 +237,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Card 3 -->
                 <div class="group bg-slate-800/40 border border-white/5 hover:border-gold-400/30 rounded-2xl p-6 transition hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-green-900/30 border border-green-600/30 flex items-center justify-center shrink-0">
@@ -251,7 +249,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Card 4 -->
                 <div class="group bg-slate-800/40 border border-white/5 hover:border-gold-400/30 rounded-2xl p-6 transition hover:-translate-y-1" data-aos="fade-up">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-blue-900/30 border border-blue-600/30 flex items-center justify-center shrink-0">
@@ -264,7 +261,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Card 5 -->
                 <div class="group bg-slate-800/40 border border-white/5 hover:border-gold-400/30 rounded-2xl p-6 transition hover:-translate-y-1" data-aos="fade-up" data-aos-delay="50">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-purple-900/30 border border-purple-600/30 flex items-center justify-center shrink-0">
@@ -277,7 +273,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Card 6 -->
                 <div class="group bg-slate-800/40 border border-white/5 hover:border-gold-400/30 rounded-2xl p-6 transition hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-red-900/30 border border-red-600/30 flex items-center justify-center shrink-0">
@@ -366,8 +361,7 @@
         function toggleMobileMenu() { const m = document.getElementById('mobile-menu'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
         function imgFallback(img, seed) { if (!img.dataset.fb1) { img.dataset.fb1 = 1; img.src = 'https://picsum.photos/seed/' + seed + '/900/600'; } else { img.style.display = 'none'; } }
     </script>
-
-<script src="cms-public.js"></script>
-    
+    <!-- Jembatan CMS dashboard → halaman publik (INTEGRASI) -->
+    <script src="cms-public.js"></script>
 </body>
 </html>
