@@ -4,42 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galeri Foto & Video | Pesantren Modern Al-Izzah</title>
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        emerald: { 900: '#064E3B', 800: '#065F46' },
-                        gold: { 400: '#D97706', 500: '#B45309', light: '#FCD34D' },
-                        slate: { 900: '#0f172a' }
-                    },
-                    fontFamily: {
-                        serif: ['Cinzel', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: {
+            colors: { emerald: { 900: '#064E3B', 800: '#065F46' }, gold: { 400: '#D97706', 500: '#B45309', light: '#FCD34D' }, slate: { 900: '#0f172a' } },
+            fontFamily: { serif: ['Cinzel', 'serif'], sans: ['Plus Jakarta Sans', 'sans-serif'] }
+        } } }
     </script>
-
     <style>
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #064E3B; border-radius: 4px; }
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #0f172a; } ::-webkit-scrollbar-thumb { background: #064E3B; border-radius: 4px; }
         .glass-nav { background: rgba(15,23,42,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .text-gold-gradient {
-            background: linear-gradient(to right, #D97706, #FCD34D, #D97706);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-size: 200% auto; animation: shine 5s linear infinite;
-        }
+        .text-gold-gradient { background: linear-gradient(to right,#D97706,#FCD34D,#D97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% auto; animation: shine 5s linear infinite; }
         @keyframes shine { to { background-position: 200% center; } }
         .group:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
         .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(10px); transition: all .3s ease-in-out; }
@@ -52,87 +32,49 @@
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-5">
         <div class="container mx-auto px-6 flex justify-between items-center">
             <a href="index.html" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 bg-emerald-900/80 rounded-full flex items-center justify-center border border-gold-400 shadow-[0_0_15px_rgba(217,119,6,0.3)] backdrop-blur-sm">
-                    <i class="fas fa-mosque text-gold-400 text-lg"></i>
-                </div>
+                <div class="w-11 h-11 bg-emerald-900/80 rounded-full flex items-center justify-center border border-gold-400 shadow-[0_0_15px_rgba(217,119,6,0.3)] backdrop-blur-sm"><i class="fas fa-mosque text-gold-400 text-lg"></i></div>
                 <div>
                     <h1 class="font-serif text-xl font-bold text-white tracking-wider group-hover:text-gold-400 transition">AL-IZZAH</h1>
                     <p class="text-[9px] uppercase tracking-[0.25em] text-gray-300 font-medium">International Boarding School</p>
                 </div>
             </a>
-
             <div class="hidden lg:flex items-center gap-5 xl:gap-7">
                 <a href="index.html" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition">Beranda</a>
-                
                 <div class="relative group">
-                    <button class="text-sm font-medium text-gold-400 transition flex items-center gap-1 py-2">
-                        Profil <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
-                    </button>
+                    <button class="text-sm font-medium text-gold-400 transition flex items-center gap-1 py-2">Profil <i class="fas fa-chevron-down text-[10px] mt-0.5"></i></button>
                     <div class="dropdown-menu absolute top-full left-0 w-64 bg-slate-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden py-2">
-                        <a href="profil.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-school w-5 text-gold-400/70 mr-2"></i> Profil Sekolah
-                            <span class="block text-[10px] text-gray-500 mt-0.5 pl-7">Visi, Misi & Sejarah</span>
-                        </a>
-                        <a href="struktur.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-sitemap w-5 text-gold-400/70 mr-2"></i> Struktur Organisasi
-                        </a>
-                        <a href="index.html#facilities" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-building w-5 text-gold-400/70 mr-2"></i> Fasilitas & Infrastruktur
-                        </a>
-                        <a href="galeri.html" class="block px-5 py-3 text-sm bg-emerald-900/40 text-gold-400 border-l-2 border-gold-400">
-                            <i class="fas fa-images w-5 text-gold-400/70 mr-2"></i> Galeri Foto & Video
-                        </a>
+                        <a href="profil.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400"><i class="fas fa-school w-5 text-gold-400/70 mr-2"></i> Profil Sekolah<span class="block text-[10px] text-gray-500 mt-0.5 pl-7">Visi, Misi & Sejarah</span></a>
+                        <a href="struktur.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400"><i class="fas fa-sitemap w-5 text-gold-400/70 mr-2"></i> Struktur Organisasi</a>
+                        <a href="index.html#facilities" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400"><i class="fas fa-building w-5 text-gold-400/70 mr-2"></i> Fasilitas & Infrastruktur</a>
+                        <a href="galeri.html" class="block px-5 py-3 text-sm bg-emerald-900/40 text-gold-400 border-l-2 border-gold-400"><i class="fas fa-images w-5 text-gold-400/70 mr-2"></i> Galeri Foto & Video</a>
                     </div>
                 </div>
-
                 <div class="relative group">
-                    <button class="text-sm font-medium text-gray-200 hover:text-gold-400 transition flex items-center gap-1 py-2">
-                        Kabar Berita <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
-                    </button>
+                    <button class="text-sm font-medium text-gray-200 hover:text-gold-400 transition flex items-center gap-1 py-2">Kabar Berita <i class="fas fa-chevron-down text-[10px] mt-0.5"></i></button>
                     <div class="dropdown-menu absolute top-full left-0 w-64 bg-slate-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden py-2">
-                        <a href="index.html#berita" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-newspaper w-5 text-gold-400/70 mr-2"></i> Berita & Artikel
-                        </a>
-                        <a href="index.html#agenda" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-calendar-alt w-5 text-gold-400/70 mr-2"></i> Agenda & Kalender
-                        </a>
-                        <a href="index.html#prestasi" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-trophy w-5 text-gold-400/70 mr-2"></i> Prestasi & Penghargaan
-                        </a>
+                        <a href="berita.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400"><i class="fas fa-newspaper w-5 text-gold-400/70 mr-2"></i> Berita & Artikel</a>
+                        <a href="agenda.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400"><i class="fas fa-calendar-alt w-5 text-gold-400/70 mr-2"></i> Agenda & Kalender</a>
+                        <a href="prestasi.html" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400"><i class="fas fa-trophy w-5 text-gold-400/70 mr-2"></i> Prestasi & Penghargaan</a>
                     </div>
                 </div>
-
                 <div class="relative group">
                     <button class="text-sm font-medium text-gold-400 hover:text-gold-light transition flex items-center gap-1.5 py-2">
-                        <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-gold-400"></span>
-                        </span>
+                        <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-gold-400"></span></span>
                         SPMB Online <i class="fas fa-chevron-down text-[10px] mt-0.5"></i>
                     </button>
                     <div class="dropdown-menu absolute top-full left-0 w-72 bg-slate-800/95 backdrop-blur-xl border border-gold-400/30 rounded-xl shadow-2xl overflow-hidden py-2">
-                        <a href="index.html#spmb-info" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-circle-info w-5 text-gold-400/70 mr-2"></i> Halaman Informasi SPMB
-                        </a>
-                        <a href="index.html#spmb-result" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400">
-                            <i class="fas fa-bullhorn w-5 text-gold-400/70 mr-2"></i> Pengumuman Hasil Seleksi
-                        </a>
+                        <a href="index.html#spmb-info" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400"><i class="fas fa-circle-info w-5 text-gold-400/70 mr-2"></i> Halaman Informasi SPMB</a>
+                        <a href="index.html#spmb-result" class="block px-5 py-3 text-sm text-gray-300 hover:bg-emerald-900/50 hover:text-gold-400 hover:pl-6 transition-all border-l-2 border-transparent hover:border-gold-400"><i class="fas fa-bullhorn w-5 text-gold-400/70 mr-2"></i> Pengumuman Hasil Seleksi</a>
                     </div>
                 </div>
-
                 <a href="index.html#kurikulum" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition">Kurikulum</a>
                 <a href="index.html#testimoni" class="text-sm font-medium text-gray-200 hover:text-gold-400 transition">Kontak</a>
             </div>
-
             <div class="hidden lg:block">
-                <a href="dashboard.html" class="px-6 py-2.5 bg-gradient-to-r from-emerald-900 to-emerald-800 border border-emerald-700/50 text-white text-sm font-semibold rounded-full hover:shadow-[0_0_20px_rgba(6,78,59,0.6)] transition transform hover:-translate-y-0.5 flex items-center gap-2">
-                    <i class="fas fa-user-lock text-gold-400"></i> Portal PSB & Login
-                </a>
+                <a href="dashboard.html" class="px-6 py-2.5 bg-gradient-to-r from-emerald-900 to-emerald-800 border border-emerald-700/50 text-white text-sm font-semibold rounded-full hover:shadow-[0_0_20px_rgba(6,78,59,0.6)] transition transform hover:-translate-y-0.5 flex items-center gap-2"><i class="fas fa-user-lock text-gold-400"></i> Portal PSB & Login</a>
             </div>
-
             <button class="lg:hidden text-white text-2xl" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
         </div>
-        
         <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-slate-900/95 backdrop-blur-xl border-t border-white/10 p-6 flex-col gap-4 shadow-2xl max-h-[85vh] overflow-y-auto">
             <a href="index.html" class="block text-gray-300 hover:text-gold-400 py-2 font-medium">Beranda</a>
             <div class="border-l-2 border-gold-400 pl-4 space-y-3 bg-gold-400/5 rounded-r-lg py-3 pr-3">
@@ -144,9 +86,9 @@
             </div>
             <div class="border-l-2 border-emerald-800 pl-4 space-y-3">
                 <p class="text-xs text-gold-400 uppercase tracking-widest font-bold mb-1">Kabar Berita</p>
-                <a href="index.html#berita" class="block text-sm text-gray-400 hover:text-white">Berita & Artikel Sekolah</a>
-                <a href="index.html#agenda" class="block text-sm text-gray-400 hover:text-white">Agenda & Kalender Kegiatan</a>
-                <a href="index.html#prestasi" class="block text-sm text-gray-400 hover:text-white">Prestasi & Penghargaan</a>
+                <a href="berita.html" class="block text-sm text-gray-400 hover:text-white">Berita & Artikel Sekolah</a>
+                <a href="agenda.html" class="block text-sm text-gray-400 hover:text-white">Agenda & Kalender Kegiatan</a>
+                <a href="prestasi.html" class="block text-sm text-gray-400 hover:text-white">Prestasi & Penghargaan</a>
             </div>
             <div class="border-l-2 border-emerald-800 pl-4 space-y-3">
                 <p class="text-xs text-gold-400 uppercase tracking-widest font-bold mb-1"><i class="fas fa-bolt mr-1"></i> SPMB Online</p>
@@ -174,17 +116,13 @@
                 <span class="text-gold-400 font-semibold">Galeri Foto & Video</span>
             </nav>
             <p class="text-gold-400 text-xs font-bold tracking-[0.35em] uppercase mb-4" data-aos="fade-up">Dokumentasi Kehidupan Kampus</p>
-            <h1 class="font-serif text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl" data-aos="fade-up" data-aos-delay="100">
-                Galeri <span class="text-gold-gradient italic">Foto & Video</span>
-            </h1>
+            <h1 class="font-serif text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl" data-aos="fade-up" data-aos-delay="100">Galeri <span class="text-gold-gradient italic">Foto & Video</span></h1>
             <div class="flex items-center justify-center gap-4 mb-6" data-aos="fade-up" data-aos-delay="200">
                 <span class="h-px w-16 md:w-24 bg-gradient-to-r from-transparent to-gold-400"></span>
                 <i class="fas fa-star-and-crescent text-gold-400 text-lg"></i>
                 <span class="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-gold-400"></span>
             </div>
-            <p class="text-gray-300 max-w-2xl mx-auto font-light leading-relaxed" data-aos="fade-up" data-aos-delay="300">
-                Potret keseharian santri — dari halaqah subuh, laboratorium sains, hingga panggung prestasi internasional. Klik foto untuk memperbesar.
-            </p>
+            <p class="text-gray-300 max-w-2xl mx-auto font-light leading-relaxed" data-aos="fade-up" data-aos-delay="300">Potret keseharian santri — dari halaqah subuh, laboratorium sains, hingga panggung prestasi internasional. Klik foto untuk memperbesar.</p>
         </div>
     </header>
 
@@ -197,7 +135,6 @@
                 <div class="w-24 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto rounded-full"></div>
             </div>
 
-            <!-- Filter Buttons -->
             <div class="flex flex-wrap justify-center gap-3 mb-12" data-aos="fade-up">
                 <button onclick="filterGallery('all', this)" class="filter-btn px-5 py-2 rounded-full text-sm border border-gold-400 bg-gold-400 text-slate-900 font-bold transition">Semua</button>
                 <button onclick="filterGallery('kegiatan', this)" class="filter-btn px-5 py-2 rounded-full text-sm border border-white/15 text-gray-300 hover:border-gold-400 hover:text-gold-400 transition">Kegiatan Kampus</button>
@@ -206,7 +143,7 @@
                 <button onclick="filterGallery('prestasi', this)" class="filter-btn px-5 py-2 rounded-full text-sm border border-white/15 text-gray-300 hover:border-gold-400 hover:text-gold-400 transition">Prestasi</button>
             </div>
 
-            <!-- Masonry Grid -->
+            <!-- Grid galeri: item CMS dari dashboard otomatis masuk ke sini (INTEGRASI) -->
             <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[170px] md:auto-rows-[190px]">
                 
                 <figure class="gallery-item group relative overflow-hidden rounded-xl cursor-pointer bg-emerald-900/40 row-span-2 flex items-center justify-center" data-cat="ibadah" data-caption="Shalat berjamaah di Masjid Agung Al-Izzah" onclick="openLightbox(this)" data-aos="zoom-in">
@@ -422,12 +359,8 @@
             <h2 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">Rasakan Sendiri Suasana Kampus Kami</h2>
             <p class="text-emerald-100/80 max-w-xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">Foto dan video tidak akan pernah cukup — kunjungi kami dan lihat langsung kehidupan santri Al-Izzah.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="200">
-                <a href="index.html#spmb-form" class="px-8 py-4 bg-gold-400 hover:bg-gold-500 text-slate-900 font-bold rounded-lg shadow-[0_10px_40px_rgba(217,119,6,0.35)] transition transform hover:-translate-y-1">
-                    Daftar Santri Baru <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-                <a href="struktur.html" class="px-8 py-4 border border-white/30 hover:bg-white/10 text-white font-semibold rounded-lg transition">
-                    Lihat Struktur Organisasi
-                </a>
+                <a href="index.html#spmb-form" class="px-8 py-4 bg-gold-400 hover:bg-gold-500 text-slate-900 font-bold rounded-lg shadow-[0_10px_40px_rgba(217,119,6,0.35)] transition transform hover:-translate-y-1">Daftar Santri Baru <i class="fas fa-arrow-right ml-2"></i></a>
+                <a href="struktur.html" class="px-8 py-4 border border-white/30 hover:bg-white/10 text-white font-semibold rounded-lg transition">Lihat Struktur Organisasi</a>
             </div>
         </div>
     </section>
@@ -437,10 +370,7 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                 <div>
-                    <div class="flex items-center gap-2 mb-6">
-                        <i class="fas fa-mosque text-gold-400 text-2xl"></i>
-                        <h2 class="font-serif text-2xl font-bold text-white">AL-IZZAH</h2>
-                    </div>
+                    <div class="flex items-center gap-2 mb-6"><i class="fas fa-mosque text-gold-400 text-2xl"></i><h2 class="font-serif text-2xl font-bold text-white">AL-IZZAH</h2></div>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">Lembaga pendidikan Islam modern yang mencetak generasi Qur'ani, berwawasan global, dan siap memimpin masa depan.</p>
                     <div class="flex gap-4">
                         <a href="#" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-gray-400 hover:bg-gold-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
@@ -463,7 +393,7 @@
                         <li><a href="#foto" class="hover:text-gold-400 transition">Galeri Foto</a></li>
                         <li><a href="#video" class="hover:text-gold-400 transition">Galeri Video</a></li>
                         <li><a href="index.html#facilities" class="hover:text-gold-400 transition">Fasilitas & Infrastruktur</a></li>
-                        <li><a href="index.html#prestasi" class="hover:text-gold-400 transition">Prestasi & Penghargaan</a></li>
+                        <li><a href="prestasi.html" class="hover:text-gold-400 transition">Prestasi & Penghargaan</a></li>
                     </ul>
                 </div>
                 <div>
@@ -479,33 +409,19 @@
         </div>
     </footer>
 
-    <!-- ============ SCRIPTS ============ -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true, offset: 80 });
-
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) { navbar.classList.add('glass-nav', 'py-2'); navbar.classList.remove('py-5'); }
             else { navbar.classList.remove('glass-nav', 'py-2'); navbar.classList.add('py-5'); }
         });
+        function toggleMobileMenu() { const m = document.getElementById('mobile-menu'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
+        function imgFallback(img, seed) { if (!img.dataset.fb1) { img.dataset.fb1 = 1; img.src = 'https://picsum.photos/seed/' + seed + '/800/600'; } else { img.style.display = 'none'; } }
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden'); menu.classList.toggle('flex');
-        }
-
-        /* Fallback foto */
-        function imgFallback(img, seed) {
-            if (!img.dataset.fb1) { img.dataset.fb1 = 1; img.src = 'https://picsum.photos/seed/' + seed + '/800/600'; }
-            else { img.style.display = 'none'; }
-        }
-
-        /* ====== FILTER GALERI ====== */
         function filterGallery(cat, btn) {
-            document.querySelectorAll('.filter-btn').forEach(b => {
-                b.className = 'filter-btn px-5 py-2 rounded-full text-sm border border-white/15 text-gray-300 hover:border-gold-400 hover:text-gold-400 transition';
-            });
+            document.querySelectorAll('.filter-btn').forEach(b => { b.className = 'filter-btn px-5 py-2 rounded-full text-sm border border-white/15 text-gray-300 hover:border-gold-400 hover:text-gold-400 transition'; });
             btn.className = 'filter-btn px-5 py-2 rounded-full text-sm border border-gold-400 bg-gold-400 text-slate-900 font-bold transition';
             document.querySelectorAll('.gallery-item').forEach(item => {
                 if (cat === 'all' || item.dataset.cat === cat) item.classList.remove('hidden');
@@ -513,13 +429,9 @@
             });
         }
 
-        /* ====== LIGHTBOX FOTO ====== */
         let currentItems = [];
         let currentIndex = 0;
-
-        function visibleItems() {
-            return Array.from(document.querySelectorAll('.gallery-item')).filter(i => !i.classList.contains('hidden'));
-        }
+        function visibleItems() { return Array.from(document.querySelectorAll('.gallery-item')).filter(i => !i.classList.contains('hidden')); }
         function openLightbox(fig) {
             currentItems = visibleItems();
             currentIndex = currentItems.indexOf(fig);
@@ -535,17 +447,9 @@
             document.getElementById('lightboxCaption').textContent = fig.dataset.caption;
             document.getElementById('lightboxCounter').textContent = (currentIndex + 1) + ' / ' + currentItems.length;
         }
-        function navLightbox(dir) {
-            currentIndex = (currentIndex + dir + currentItems.length) % currentItems.length;
-            showLightbox();
-        }
-        function closeLightbox() {
-            const lb = document.getElementById('lightbox');
-            lb.classList.add('hidden'); lb.classList.remove('flex');
-            document.body.style.overflow = '';
-        }
+        function navLightbox(dir) { currentIndex = (currentIndex + dir + currentItems.length) % currentItems.length; showLightbox(); }
+        function closeLightbox() { const lb = document.getElementById('lightbox'); lb.classList.add('hidden'); lb.classList.remove('flex'); document.body.style.overflow = ''; }
 
-        /* ====== MODAL VIDEO ====== */
         function openVideo(src, title) {
             document.getElementById('videoTitle').textContent = title;
             const v = document.getElementById('videoPlayer');
@@ -563,7 +467,6 @@
             document.body.style.overflow = '';
         }
 
-        /* Tutup dengan tombol ESC + navigasi panah keyboard */
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') { closeLightbox(); closeVideo(); }
             if (!document.getElementById('lightbox').classList.contains('hidden')) {
@@ -572,7 +475,7 @@
             }
         });
     </script>
-<script src="cms-public.js"></script>
-
+    <!-- Jembatan CMS dashboard → halaman publik (INTEGRASI) -->
+    <script src="cms-public.js"></script>
 </body>
 </html>
